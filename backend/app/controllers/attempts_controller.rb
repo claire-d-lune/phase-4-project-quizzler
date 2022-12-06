@@ -1,2 +1,4 @@
 class AttemptsController < ApplicationController
+
+    
 end
