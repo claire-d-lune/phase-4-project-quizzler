@@ -1,6 +1,6 @@
 // import './App.css';
 import Home from './components/Home';
-import NewUserForm from './components/NewUserForm';
+import NewUserForm from './components/LoginPage';
 import QuizPage from './components/QuizPage';
 import User from './components/User';
 import Signup from './components/Signup';
