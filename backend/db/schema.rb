@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_05_175007) do
+ActiveRecord::Schema.define(version: 2022_12_06_204525) do
 
   create_table "attempts", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -22,15 +22,26 @@ ActiveRecord::Schema.define(version: 2022_12_05_175007) do
     t.index ["user_id"], name: "index_attempts_on_user_id"
   end
 
+  create_table "incorrect_answers", force: :cascade do |t|
+    t.string "a1"
+    t.string "a2"
+    t.string "a3"
+    t.integer "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_incorrect_answers_on_question_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "category"
-    t.string "type"
+    t.string "format"
     t.string "question"
     t.string "difficulty"
     t.string "correct_answer"
-    t.string "incorrect_answers"
+    t.integer "quiz_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -38,16 +49,6 @@ ActiveRecord::Schema.define(version: 2022_12_05_175007) do
     t.string "description"
     t.string "image_url"
     t.integer "author_id"
-    t.integer "q1"
-    t.integer "q2"
-    t.integer "q3"
-    t.integer "q4"
-    t.integer "q5"
-    t.integer "q6"
-    t.integer "q7"
-    t.integer "q8"
-    t.integer "q9"
-    t.integer "q10"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,4 +66,6 @@ ActiveRecord::Schema.define(version: 2022_12_05_175007) do
 
   add_foreign_key "attempts", "quizzes"
   add_foreign_key "attempts", "users"
+  add_foreign_key "incorrect_answers", "questions"
+  add_foreign_key "questions", "quizzes"
 end
