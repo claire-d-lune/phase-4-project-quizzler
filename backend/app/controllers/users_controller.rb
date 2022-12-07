@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
     def create
         user = User.create(user_params)
         if user.valid?
@@ -16,6 +15,7 @@ class UsersController < ApplicationController
     end
 
     def show
+      byebug
       user = User.find(session[:user_id])
       render json: user, status: 200
     end

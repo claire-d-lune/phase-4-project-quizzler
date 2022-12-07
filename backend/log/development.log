@@ -552,3 +552,1474 @@ Processing by UsersController#show as */*
 Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 769)
 
 
+Started GET "/" for ::1 at 2022-12-06 10:48:11 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as */*
+  Rendering /Users/clairesteinhoff/.rvm/gems/ruby-2.7.4/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/clairesteinhoff/.rvm/gems/ruby-2.7.4/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 5.6ms | Allocations: 402)
+Completed 200 OK in 18ms (Views: 9.8ms | ActiveRecord: 0.0ms | Allocations: 3474)
+
+
+Started GET "/users/1" for ::1 at 2022-12-06 10:48:33 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+Completed 404 Not Found in 9ms (ActiveRecord: 0.2ms | Allocations: 4479)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:19:in `show'
+Started POST "/users/1" for ::1 at 2022-12-06 10:55:25 -0700
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/users/1"):
+  
+Started POST "/users/" for ::1 at 2022-12-06 10:55:33 -0700
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer"}}
+[31mUnpermitted parameters: :password_match, :user[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Claire"], ["last_name", "Steiny"], ["username", "ste1nhoofer"], ["password_digest", "$2a$12$RcrEsefhOaJ6UJ3hMq7ADuo8JFzkGUVHbJwYUepYLqMpo2RZOwWKS"], ["created_at", "2022-12-06 17:55:33.477688"], ["updated_at", "2022-12-06 17:55:33.477688"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.3ms)
+Completed 201 Created in 414ms (Views: 3.4ms | ActiveRecord: 3.5ms | Allocations: 10061)
+
+
+Started POST "/users/5" for ::1 at 2022-12-06 10:55:39 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/users/5"):
+  
+Started POST "/login" for ::1 at 2022-12-06 10:57:49 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "session"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "ste1nhoofer"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.37ms)
+Completed 201 Created in 413ms (Views: 6.3ms | ActiveRecord: 1.1ms | Allocations: 6937)
+
+
+Started POST "/users/5" for ::1 at 2022-12-06 10:57:59 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/users/5"):
+  
+Started POST "/me" for ::1 at 2022-12-06 10:58:08 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/me"):
+  
+Started POST "/users" for ::1 at 2022-12-06 11:01:38 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Claire"], ["last_name", "Steiny"], ["username", "ste1nhoofer"], ["password_digest", "$2a$12$xS4pJGrOW8r6mQLNs5n./euTu0qSXy2OXgfkmA/9G6m3pmipbo3FC"], ["created_at", "2022-12-06 18:01:38.736491"], ["updated_at", "2022-12-06 18:01:38.736491"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.32ms)
+Completed 201 Created in 410ms (Views: 3.6ms | ActiveRecord: 3.2ms | Allocations: 7600)
+
+
+Started GET "/users" for ::1 at 2022-12-06 11:01:44 -0700
+Processing by UsersController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.91ms)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.3ms | Allocations: 1475)
+
+
+Started POST "/users" for ::1 at 2022-12-06 11:03:01 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/users"):
+  
+Started POST "/signup" for ::1 at 2022-12-06 11:03:08 -0700
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Claire"], ["last_name", "Steiny"], ["username", "ste1nhoofer"], ["password_digest", "$2a$12$klFkbq4G8hvzaK/EtmCCYuXS372DinQkYDosLrvIRsgc9EPlhvjNe"], ["created_at", "2022-12-06 18:03:09.048361"], ["updated_at", "2022-12-06 18:03:09.048361"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.25ms)
+Completed 201 Created in 414ms (Views: 3.1ms | ActiveRecord: 3.3ms | Allocations: 10140)
+
+
+Started POST "/me" for ::1 at 2022-12-06 11:03:18 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/me"):
+  
+Started POST "/me" for ::1 at 2022-12-06 11:15:30 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/me"):
+  
+Started OPTIONS "/signup" for ::1 at 2022-12-06 11:16:09 -0700
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/signup"):
+  
+Started OPTIONS "/signup" for ::1 at 2022-12-06 11:32:59 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/signup"):
+  
+Started POST "/users" for ::1 at 2022-12-06 11:46:53 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer"}}
+[31mUnpermitted parameters: :password_match, :user[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (2.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Claire"], ["last_name", "Steiny"], ["username", "ste1nhoofer"], ["password_digest", "$2a$12$aUtdl3zNkXADqECLvwtfq.eAOsutzwn7/gzHOwoTP0CjNZ/odQ2wG"], ["created_at", "2022-12-06 18:46:53.629695"], ["updated_at", "2022-12-06 18:46:53.629695"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.28ms)
+Completed 201 Created in 416ms (Views: 3.1ms | ActiveRecord: 5.3ms | Allocations: 10149)
+
+
+Started POST "/show" for ::1 at 2022-12-06 11:46:59 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/show"):
+  
+Started POST "/me" for ::1 at 2022-12-06 11:47:02 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/me"):
+  
+Started GET "/users" for ::1 at 2022-12-06 11:47:17 -0700
+Processing by UsersController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.05ms)
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.9ms | Allocations: 1707)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-12-06 11:50:14 -0700
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"New", "last_name"=>"name", "username"=>"klfjew;", "email"=>"akfje", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "confirm_password"=>"[FILTERED]", "user"=>{"first_name"=>"New", "last_name"=>"name", "username"=>"klfjew;", "email"=>"akfje"}}
+[31mUnpermitted parameters: :password_match, :confirm_password, :user[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "New"], ["last_name", "name"], ["username", "klfjew;"], ["password_digest", "$2a$12$bQS90.d3Oll9ct2gT2HaCuRTnoZ2HPxB6tIzDNaiHuwRFEPSkAXfu"], ["email", "akfje"], ["created_at", "2022-12-06 18:50:15.173128"], ["updated_at", "2022-12-06 18:50:15.173128"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 201 Created in 412ms (Views: 3.2ms | ActiveRecord: 2.6ms | Allocations: 10080)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-12-06 11:50:15 -0700
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"New", "last_name"=>"name", "username"=>"klfjew;", "email"=>"akfje", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "confirm_password"=>"[FILTERED]", "user"=>{"first_name"=>"New", "last_name"=>"name", "username"=>"klfjew;", "email"=>"akfje"}}
+[31mUnpermitted parameters: :password_match, :confirm_password, :user[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "New"], ["last_name", "name"], ["username", "klfjew;"], ["password_digest", "$2a$12$EesLAb7fzVb/MrzM3q.gc.p7BF4MKVxjXMJSUOvjkPxMFWNeAjuwu"], ["email", "akfje"], ["created_at", "2022-12-06 18:50:16.181806"], ["updated_at", "2022-12-06 18:50:16.181806"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.27ms)
+Completed 201 Created in 400ms (Views: 0.8ms | ActiveRecord: 1.1ms | Allocations: 2276)
+
+
+Started GET "/users" for ::1 at 2022-12-06 11:50:25 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.85ms)
+Completed 200 OK in 13ms (Views: 10.2ms | ActiveRecord: 0.5ms | Allocations: 8848)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "q1" integer, "q2" integer, "q3" integer, "q4" integer, "q5" integer, "q6" integer, "q7" integer, "q8" integer, "q9" integer, "q10" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "incorrect_answers" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-06 20:21:17.903724"], ["updated_at", "2022-12-06 20:21:17.903724"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 20:21:37.971172"], ["updated_at", "2022-12-06 20:21:37.971172"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "q1" integer, "q2" integer, "q3" integer, "q4" integer, "q5" integer, "q6" integer, "q7" integer, "q8" integer, "q9" integer, "q10" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "incorrect_answers" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-06 20:22:04.825135"], ["updated_at", "2022-12-06 20:22:04.825135"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 20:22:04.840404"], ["updated_at", "2022-12-06 20:22:04.840404"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 13:26:06 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (8.92ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.7ms | Allocations: 11705)
+
+
+  
+NoMethodError (undefined method `incorrect_answer' for #<Question:0x000000011b38d0f8>
+Did you mean?  incorrect_answers
+               incorrect_answers=
+               incorrect_answers?
+               correct_answer
+               correct_answer?
+               correct_answer=):
+  
+app/controllers/questions_controller.rb:4:in `index'
+Started GET "/questions" for ::1 at 2022-12-06 13:27:27 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.3ms)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.7ms | Allocations: 4510)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 20:28:07.173142"], ["updated_at", "2022-12-06 20:28:07.173142"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "incorrect_answers", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["incorrect_answers", "[\"Bandung\", \"Medan\", \"Palembang\"]"], ["created_at", "2022-12-06 20:28:07.174613"], ["updated_at", "2022-12-06 20:28:07.174613"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 13:28:18 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steiny", "username"=>"ste1nhoofer", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.3ms)
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.3ms | Allocations: 8443)
+
+
+Started GET "/questions" for ::1 at 2022-12-06 13:29:44 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"category"=>"Geography", "type"=>"multiple", "difficulty"=>"easy", "question"=>"The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?", "correct_answer"=>"Portugal, Ireland, Italy, Greece, Spain", "incorrect_answers"=>["Poland, Iceland, Italy, Greece, Serbia", "Poland, Iceland, Italy, Greenland, Spain", "Portugal, Iceland, Ireland, Greece, Serbia"]}
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.4ms | Allocations: 9016)
+
+
+Started POST "/questions" for ::1 at 2022-12-06 13:30:51 -0700
+Processing by QuestionsController#create as */*
+  Parameters: {"category"=>"Geography", "type"=>"multiple", "difficulty"=>"easy", "question"=>"The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?", "correct_answer"=>"Portugal, Ireland, Italy, Greece, Spain", "incorrect_answers"=>["Poland, Iceland, Italy, Greece, Serbia", "Poland, Iceland, Italy, Greenland, Spain", "Portugal, Iceland, Ireland, Greece, Serbia"]}
+[31mUnpermitted parameter: :incorrect_answers[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/questions_controller.rb:8:in `create'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.6ms | Allocations: 4716)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'type' for Question.):
+  
+app/controllers/questions_controller.rb:8:in `create'
+Started POST "/questions" for ::1 at 2022-12-06 13:31:02 -0700
+Processing by QuestionsController#create as */*
+  Parameters: {"category"=>"Geography", "difficulty"=>"easy", "question"=>"The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?", "correct_answer"=>"Portugal, Ireland, Italy, Greece, Spain", "incorrect_answers"=>["Poland, Iceland, Italy, Greece, Serbia", "Poland, Iceland, Italy, Greenland, Spain", "Portugal, Iceland, Ireland, Greece, Serbia"]}
+[31mUnpermitted parameters: :format, :incorrect_answers[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/questions_controller.rb:8:in `create'
+  [1m[36mQuestion Create (1.3ms)[0m  [1m[32mINSERT INTO "questions" ("category", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geography"], ["question", "The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?"], ["difficulty", "easy"], ["correct_answer", "Portugal, Ireland, Italy, Greece, Spain"], ["created_at", "2022-12-06 20:31:02.570872"], ["updated_at", "2022-12-06 20:31:02.570872"]]
+  ↳ app/controllers/questions_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/questions_controller.rb:8:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (0.53ms)
+Completed 201 Created in 11ms (Views: 2.3ms | ActiveRecord: 2.3ms | Allocations: 2386)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "q1" integer, "q2" integer, "q3" integer, "q4" integer, "q5" integer, "q6" integer, "q7" integer, "q8" integer, "q9" integer, "q10" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateIncorrectAnswers (20221206204035)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "incorrect_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "a1" varchar, "a2" varchar, "a3" varchar, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e4a82d82e0"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_incorrect_answers_on_question_id" ON "incorrect_answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221206204035"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-06 20:43:50.099042"], ["updated_at", "2022-12-06 20:43:50.099042"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 20:43:50.117809"], ["updated_at", "2022-12-06 20:43:50.117809"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "q1" integer, "q2" integer, "q3" integer, "q4" integer, "q5" integer, "q6" integer, "q7" integer, "q8" integer, "q9" integer, "q10" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateIncorrectAnswers (20221206204525)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "incorrect_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "a1" varchar, "a2" varchar, "a3" varchar, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e4a82d82e0"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_incorrect_answers_on_question_id" ON "incorrect_answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221206204525"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-06 20:46:25.986293"], ["updated_at", "2022-12-06 20:46:25.986293"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 20:46:26.002908"], ["updated_at", "2022-12-06 20:46:26.002908"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 20:47:28.998984"], ["updated_at", "2022-12-06 20:47:28.998984"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mIncorrectAnswer Create (0.3ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 2], ["created_at", "2022-12-06 20:47:29.007176"], ["updated_at", "2022-12-06 20:47:29.007176"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 13:48:00 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Error occurred while parsing request parameters.
+Contents:
+
+{
+      "category": "Geography",
+      "format": "multiple",
+      "difficulty": "easy",
+      "question": "The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?",
+      "correct_answer": "Portugal, Ireland, Italy, Greece, Spain",
+      "incorrect1": "Poland, Iceland, Italy, Greece, Serbia".
+      "ICA2": "Poland, Iceland, Italy, Greenland, Spain",[
+        ,
+        
+        "Portugal, Iceland, Ireland, Greece, Serbia"
+      ]
+    }
+  
+ActionDispatch::Http::Parameters::ParseError (783: unexpected token at '{
+      "category": "Geography",
+      "format": "multiple",
+      "difficulty": "easy",
+      "question": "The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?",
+      "correct_answer": "Portugal, Ireland, Italy, Greece, Spain",
+      "incorrect1": "Poland, Iceland, Italy, Greece, Serbia".
+      "ICA2": "Poland, Iceland, Italy, Greenland, Spain",[
+        ,
+        
+        "Portugal, Iceland, Ireland, Greece, Serbia"
+      ]
+    }'):
+  
+actionpack (6.1.3.2) lib/action_dispatch/http/parameters.rb:96:in `rescue in parse_formatted_parameters'
+actionpack (6.1.3.2) lib/action_dispatch/http/parameters.rb:92:in `parse_formatted_parameters'
+actionpack (6.1.3.2) lib/action_dispatch/http/request.rb:399:in `block in POST'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3.2) lib/action_dispatch/http/request.rb:398:in `POST'
+actionpack (6.1.3.2) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3.2) lib/action_controller/metal/params_wrapper.rb:284:in `_wrapper_enabled?'
+actionpack (6.1.3.2) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (6.1.3.2) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3.2) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3.2) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3.2) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+      "category": "Geography",
+      "format": "multiple",
+      "difficulty": "easy",
+      "question": "The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?",
+      "correct_answer": "Portugal, Ireland, Italy, Greece, Spain",
+      "incorrect1": "Poland, Iceland, Italy, Greece, Serbia".
+      "ICA2": "Poland, Iceland, Italy, Greenland, Spain",[
+        ,
+        
+        "Portugal, Iceland, Ireland, Greece, Serbia"
+      ]
+    }
+Started GET "/questions" for ::1 at 2022-12-06 13:48:28 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.5ms | Allocations: 8361)
+
+
+  
+SyntaxError (/Users/clairesteinhoff/development/code/phase-4/phase-4-project-quizzler/backend/app/serializers/question_serializer.rb:2: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/serializers/question_serializer.rb:2: syntax error, unexpected end-of-input, expecting `end'
+app/serializers/question_serializer.rb:2: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/questions_controller.rb:4:in `index'
+Started GET "/questions" for ::1 at 2022-12-06 13:48:51 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.39ms)
+Completed 200 OK in 12ms (Views: 8.0ms | ActiveRecord: 0.4ms | Allocations: 9438)
+
+
+Started GET "/questions" for ::1 at 2022-12-06 13:49:21 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.5ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (16.4ms)
+Completed 200 OK in 31ms (Views: 23.8ms | ActiveRecord: 1.9ms | Allocations: 20869)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "q1" integer, "q2" integer, "q3" integer, "q4" integer, "q5" integer, "q6" integer, "q7" integer, "q8" integer, "q9" integer, "q10" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateIncorrectAnswers (20221206204525)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "incorrect_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "a1" varchar, "a2" varchar, "a3" varchar, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e4a82d82e0"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_incorrect_answers_on_question_id" ON "incorrect_answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221206204525"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-06 20:50:18.230482"], ["updated_at", "2022-12-06 20:50:18.230482"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 20:50:18.247653"], ["updated_at", "2022-12-06 20:50:18.247653"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 1], ["created_at", "2022-12-06 20:50:18.254705"], ["updated_at", "2022-12-06 20:50:18.254705"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 13:50:36 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (9.92ms)
+Completed 200 OK in 19ms (Views: 15.1ms | ActiveRecord: 0.9ms | Allocations: 17650)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "q1" integer, "q2" integer, "q3" integer, "q4" integer, "q5" integer, "q6" integer, "q7" integer, "q8" integer, "q9" integer, "q10" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateIncorrectAnswers (20221206204525)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "incorrect_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "a1" varchar, "a2" varchar, "a3" varchar, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e4a82d82e0"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_incorrect_answers_on_question_id" ON "incorrect_answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221206204525"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-06 21:35:54.971000"], ["updated_at", "2022-12-06 21:35:54.971000"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of Indonesia?"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["created_at", "2022-12-06 21:35:54.995959"], ["updated_at", "2022-12-06 21:35:54.995959"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which Russian oblast forms a border with Poland?"], ["difficulty", "easy"], ["correct_answer", "Kaliningrad"], ["created_at", "2022-12-06 21:35:54.997789"], ["updated_at", "2022-12-06 21:35:54.997789"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which US state has the highest population?"], ["difficulty", "easy"], ["correct_answer", "California"], ["created_at", "2022-12-06 21:35:54.999211"], ["updated_at", "2022-12-06 21:35:54.999211"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which of these African countries list Spanish as an official language?"], ["difficulty", "easy"], ["correct_answer", "Equatorial Guinea"], ["created_at", "2022-12-06 21:35:55.000573"], ["updated_at", "2022-12-06 21:35:55.000573"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is Canada's smallest province?"], ["difficulty", "easy"], ["correct_answer", "Prince Edward Island"], ["created_at", "2022-12-06 21:35:55.001904"], ["updated_at", "2022-12-06 21:35:55.001904"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many countries does Mexico border?"], ["difficulty", "easy"], ["correct_answer", "3"], ["created_at", "2022-12-06 21:35:55.003138"], ["updated_at", "2022-12-06 21:35:55.003138"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of India?"], ["difficulty", "easy"], ["correct_answer", "New Delhi"], ["created_at", "2022-12-06 21:35:55.004455"], ["updated_at", "2022-12-06 21:35:55.004455"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 1], ["created_at", "2022-12-06 21:35:55.012078"], ["updated_at", "2022-12-06 21:35:55.012078"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Samara"], ["a2", "Nizhny Novgorod"], ["a3", "Omsk"], ["question_id", 2], ["created_at", "2022-12-06 21:35:55.014187"], ["updated_at", "2022-12-06 21:35:55.014187"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New York"], ["a2", "Texas"], ["a3", "Florida"], ["question_id", 3], ["created_at", "2022-12-06 21:35:55.015991"], ["updated_at", "2022-12-06 21:35:55.015991"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Guinea"], ["a2", "Cameroon"], ["a3", "Angola"], ["question_id", 4], ["created_at", "2022-12-06 21:35:55.017729"], ["updated_at", "2022-12-06 21:35:55.017729"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New Brunswick"], ["a2", "Nova Scotia"], ["a3", "Yukon"], ["question_id", 5], ["created_at", "2022-12-06 21:35:55.019368"], ["updated_at", "2022-12-06 21:35:55.019368"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "2"], ["a2", "4"], ["a3", "1"], ["question_id", 6], ["created_at", "2022-12-06 21:35:55.021057"], ["updated_at", "2022-12-06 21:35:55.021057"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Bejing"], ["a2", "Montreal"], ["a3", "Tithi"], ["question_id", 7], ["created_at", "2022-12-06 21:35:55.022618"], ["updated_at", "2022-12-06 21:35:55.022618"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 14:36:58 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 5]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 6]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 7]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (13.46ms)
+Completed 200 OK in 24ms (Views: 19.1ms | ActiveRecord: 1.1ms | Allocations: 24731)
+
+
+Started GET "/questions" for ::1 at 2022-12-06 14:49:48 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 5]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 6]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 7]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (13.81ms)
+Completed 200 OK in 29ms (Views: 24.1ms | ActiveRecord: 1.2ms | Allocations: 24802)
+
+
+Started GET "/questions" for ::1 at 2022-12-06 14:50:29 -0700
+Processing by QuestionsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 5]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 6]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 7]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (18.46ms)
+Completed 200 OK in 26ms (Views: 24.5ms | ActiveRecord: 1.4ms | Allocations: 9716)
+
+
+Started POST "/signup" for ::1 at 2022-12-06 14:56:30 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steinhoff", "username"=>"claire-d-lune", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steinhoff", "username"=>"claire-d-lune"}}
+[31mUnpermitted parameters: :password_match, :user[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Claire"], ["last_name", "Steinhoff"], ["username", "claire-d-lune"], ["password_digest", "$2a$12$AwquJTQS13yHa8nlgdCuze4n5gAGgfRTRMPhvjLVvoBFySz3H6OKa"], ["created_at", "2022-12-06 21:56:30.655304"], ["updated_at", "2022-12-06 21:56:30.655304"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.19ms)
+Completed 201 Created in 250ms (Views: 2.7ms | ActiveRecord: 3.0ms | Allocations: 10146)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "quiz_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_0238c45a86"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_questions_on_quiz_id" ON "questions" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateIncorrectAnswers (20221206204525)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "incorrect_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "a1" varchar, "a2" varchar, "a3" varchar, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e4a82d82e0"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_incorrect_answers_on_question_id" ON "incorrect_answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221206204525"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-06 22:01:00.747124"], ["updated_at", "2022-12-06 22:01:00.747124"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/signup" for ::1 at 2022-12-06 15:10:40 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steinhoff", "username"=>"claire-d-lune", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "user"=>{"first_name"=>"Claire", "last_name"=>"Steinhoff", "username"=>"claire-d-lune"}}
+[31mUnpermitted parameters: :password_match, :user[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Claire"], ["last_name", "Steinhoff"], ["username", "claire-d-lune"], ["password_digest", "$2a$12$4CaT93c3GpeoeT.19cnz3u4aWtpzJA/d2224zpXRuVEfsjEyj.j.C"], ["created_at", "2022-12-06 22:10:40.355731"], ["updated_at", "2022-12-06 22:10:40.355731"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.2ms)
+Completed 201 Created in 240ms (Views: 2.5ms | ActiveRecord: 4.5ms | Allocations: 10137)
+
+
+Started GET "/quizzes" for ::1 at 2022-12-06 15:10:46 -0700
+Processing by QuizzesController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steinhoff", "username"=>"claire-d-lune", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "quiz"=>{}}
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes"[0m
+  ↳ app/controllers/quizzes_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.1ms)
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 820)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's first quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-06 22:12:37.989112"], ["updated_at", "2022-12-06 22:12:37.989112"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of Indonesia?"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:37.996719"], ["updated_at", "2022-12-06 22:12:37.996719"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which Russian oblast forms a border with Poland?"], ["difficulty", "easy"], ["correct_answer", "Kaliningrad"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:37.998703"], ["updated_at", "2022-12-06 22:12:37.998703"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which US state has the highest population?"], ["difficulty", "easy"], ["correct_answer", "California"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.000284"], ["updated_at", "2022-12-06 22:12:38.000284"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which of these African countries list Spanish as an official language?"], ["difficulty", "easy"], ["correct_answer", "Equatorial Guinea"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.001828"], ["updated_at", "2022-12-06 22:12:38.001828"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is Canada's smallest province?"], ["difficulty", "easy"], ["correct_answer", "Prince Edward Island"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.003434"], ["updated_at", "2022-12-06 22:12:38.003434"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many countries does Mexico border?"], ["difficulty", "easy"], ["correct_answer", "3"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.005023"], ["updated_at", "2022-12-06 22:12:38.005023"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of India?"], ["difficulty", "easy"], ["correct_answer", "New Delhi"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.006583"], ["updated_at", "2022-12-06 22:12:38.006583"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many federal states does Germany have?"], ["difficulty", "easy"], ["correct_answer", "16"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.008102"], ["updated_at", "2022-12-06 22:12:38.008102"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the only state in the United States that does not have a flag in a shape with 4 edges?"], ["difficulty", "easy"], ["correct_answer", "Ohio"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.009783"], ["updated_at", "2022-12-06 22:12:38.009783"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the 15th letter of the Greek alphabet?"], ["difficulty", "easy"], ["correct_answer", "Omicron (&Omicron;)"], ["quiz_id", 1], ["created_at", "2022-12-06 22:12:38.011316"], ["updated_at", "2022-12-06 22:12:38.011316"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 1], ["created_at", "2022-12-06 22:12:38.015089"], ["updated_at", "2022-12-06 22:12:38.015089"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Samara"], ["a2", "Nizhny Novgorod"], ["a3", "Omsk"], ["question_id", 2], ["created_at", "2022-12-06 22:12:38.016722"], ["updated_at", "2022-12-06 22:12:38.016722"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New York"], ["a2", "Texas"], ["a3", "Florida"], ["question_id", 3], ["created_at", "2022-12-06 22:12:38.018364"], ["updated_at", "2022-12-06 22:12:38.018364"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Guinea"], ["a2", "Cameroon"], ["a3", "Angola"], ["question_id", 4], ["created_at", "2022-12-06 22:12:38.021549"], ["updated_at", "2022-12-06 22:12:38.021549"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New Brunswick"], ["a2", "Nova Scotia"], ["a3", "Yukon"], ["question_id", 5], ["created_at", "2022-12-06 22:12:38.023314"], ["updated_at", "2022-12-06 22:12:38.023314"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "2"], ["a2", "4"], ["a3", "1"], ["question_id", 6], ["created_at", "2022-12-06 22:12:38.024901"], ["updated_at", "2022-12-06 22:12:38.024901"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Bejing"], ["a2", "Montreal"], ["a3", "Tithi"], ["question_id", 7], ["created_at", "2022-12-06 22:12:38.026388"], ["updated_at", "2022-12-06 22:12:38.026388"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "13"], ["a2", "32"], ["a3", "25"], ["question_id", 8], ["created_at", "2022-12-06 22:12:38.027854"], ["updated_at", "2022-12-06 22:12:38.027854"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Florida"], ["a2", "Idaho"], ["a3", "New Mexico"], ["question_id", 9], ["created_at", "2022-12-06 22:12:38.029429"], ["updated_at", "2022-12-06 22:12:38.029429"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.1ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Sigma (&Sigma;)"], ["a2", "Pi (&Pi;)"], ["a3", "Nu (&Nu;)"], ["question_id", 10], ["created_at", "2022-12-06 22:12:38.034620"], ["updated_at", "2022-12-06 22:12:38.034620"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/quizzes" for ::1 at 2022-12-06 15:12:49 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuizzesController#index as */*
+  Parameters: {"first_name"=>"Claire", "last_name"=>"Steinhoff", "username"=>"claire-d-lune", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "quiz"=>{}}
+  [1m[36mQuiz Load (0.2ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes"[0m
+  ↳ app/controllers/quizzes_controller.rb:5:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."quiz_id" = ?[0m  [["quiz_id", 1]]
+[active_model_serializers]   ↳ app/controllers/quizzes_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (10.31ms)
+Completed 200 OK in 20ms (Views: 17.2ms | ActiveRecord: 1.0ms | Allocations: 18148)
+
+
+Started GET "/users" for ::1 at 2022-12-06 15:24:09 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.19ms)
+Completed 200 OK in 9ms (Views: 4.9ms | ActiveRecord: 0.4ms | Allocations: 10308)
+
+
+Started GET "/me" for ::1 at 2022-12-06 15:33:00 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+Completed 404 Not Found in 6ms (ActiveRecord: 0.1ms | Allocations: 4479)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:19:in `show'
+Started POST "/signup" for 127.0.0.1 at 2022-12-06 15:38:00 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Oren", "last_name"=>"Noyes", "username"=>"ohno", "email"=>"ohno.com", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "confirm_password"=>"[FILTERED]", "user"=>{"first_name"=>"Oren", "last_name"=>"Noyes", "username"=>"ohno", "email"=>"ohno.com"}}
+[31mUnpermitted parameters: :password_match, :confirm_password, :user[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Oren"], ["last_name", "Noyes"], ["username", "ohno"], ["password_digest", "$2a$12$xW1VgdXzTv16eC6GIai/NucrI7RR9BfB08u3xZMEg7zmqZoGiNQSW"], ["email", "ohno.com"], ["created_at", "2022-12-06 22:38:00.907120"], ["updated_at", "2022-12-06 22:38:00.907120"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.17ms)
+Completed 201 Created in 269ms (Views: 2.6ms | ActiveRecord: 2.3ms | Allocations: 10165)
+
+
+Started GET "/me" for ::1 at 2022-12-06 15:38:16 -0700
+Processing by UsersController#show as */*
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms | Allocations: 188)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:19:in `show'
+Started GET "/users" for ::1 at 2022-12-06 15:39:15 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.51ms)
+Completed 200 OK in 5ms (Views: 3.0ms | ActiveRecord: 1.0ms | Allocations: 1042)
+
+
+Started GET "/me" for ::1 at 2022-12-06 15:39:59 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+Completed 404 Not Found in 5ms (ActiveRecord: 0.1ms | Allocations: 4479)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:19:in `show'
+Started GET "/me" for ::1 at 2022-12-06 15:41:37 -0700
+Processing by UsersController#show as */*
+Completed 500 Internal Server Error in 40834ms (Allocations: 52693)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `show'
+app/controllers/users_controller.rb:20:in `show'
+Started GET "/users" for ::1 at 2022-12-06 15:42:39 -0700
+Processing by UsersController#index as */*
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.34ms)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.6ms | Allocations: 8352)
+
+
+Started POST "/users" for ::1 at 2022-12-06 15:43:41 -0700
+Processing by UsersController#create as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 13ms (Views: 1.4ms | ActiveRecord: 0.6ms | Allocations: 9473)
+
+
+Started POST "/users" for ::1 at 2022-12-06 15:43:55 -0700
+Processing by UsersController#create as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 850)
+
+
+Started POST "/users" for ::1 at 2022-12-06 15:44:27 -0700
+Processing by UsersController#create as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 850)
+
+
+Started POST "/users" for ::1 at 2022-12-06 15:44:32 -0700
+Processing by UsersController#create as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 850)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-12-06 15:45:05 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"gret", "last_name"=>"smeg", "username"=>"mm", "email"=>"m", "password"=>"[FILTERED]", "password_match"=>"[FILTERED]", "user"=>{"first_name"=>"gret", "last_name"=>"smeg", "username"=>"mm", "email"=>"m"}}
+[31mUnpermitted parameters: :password_match, :user[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "password_digest", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "gret"], ["last_name", "smeg"], ["username", "mm"], ["password_digest", "$2a$12$R1m/fgi/l/CIB7pfY2R0X.ZrUNhsgRkzGAjj5lje13Kl.Tc72ahyO"], ["email", "m"], ["created_at", "2022-12-06 22:45:06.289993"], ["updated_at", "2022-12-06 22:45:06.289993"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.18ms)
+Completed 201 Created in 259ms (Views: 0.8ms | ActiveRecord: 1.2ms | Allocations: 6038)
+
+
+Started GET "/users" for ::1 at 2022-12-06 15:45:13 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.13ms)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.8ms | Allocations: 1087)
+
+
+Started POST "/login" for ::1 at 2022-12-06 15:46:04 -0700
+Processing by SessionsController#create as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 401 Unauthorized in 5ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 803)
+
+
+Started POST "/login" for ::1 at 2022-12-06 15:48:21 -0700
+Processing by SessionsController#create as */*
+Completed 500 Internal Server Error in 140475ms (Allocations: 144514)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/sessions_controller.rb:5:in `create'
+Started POST "/login" for ::1 at 2022-12-06 15:50:52 -0700
+  
+SyntaxError (/Users/clairesteinhoff/development/code/phase-4/phase-4-project-quizzler/backend/app/controllers/sessions_controller.rb:6: syntax error, unexpected `if', expecting ')'
+        if user&.authenticate(params[:p...
+        ^~
+):
+  
+app/controllers/sessions_controller.rb:6: syntax error, unexpected `if', expecting ')'
+app/controllers/sessions_controller.rb:6: syntax error, unexpected `if', expecting ')'
+Started POST "/login" for ::1 at 2022-12-06 15:51:11 -0700
+Processing by SessionsController#create as */*
+Completed 500 Internal Server Error in 2ms (Allocations: 27199)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/sessions_controller.rb:5:in `create'
+Started POST "/login" for ::1 at 2022-12-06 15:51:57 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as */*
+Completed 500 Internal Server Error in 284069ms (ActiveRecord: 0.0ms | Allocations: 147770)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/sessions_controller.rb:5:in `create'
+Started POST "/login" for ::1 at 2022-12-06 15:56:49 -0700
+Processing by SessionsController#create as */*
+Completed 500 Internal Server Error in 3041ms (Allocations: 32300)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/sessions_controller.rb:6:in `create'
+Started POST "/login" for ::1 at 2022-12-06 15:59:32 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ArgumentError (Before process_action callback :authorize has not been defined):
+  
+app/controllers/sessions_controller.rb:2:in `<class:SessionsController>'
+app/controllers/sessions_controller.rb:1:in `<main>'
+Started GET "/users" for ::1 at 2022-12-06 16:01:48 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:15:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.66ms)
+Completed 200 OK in 22ms (Views: 10.7ms | ActiveRecord: 1.1ms | Allocations: 10498)
+
+
+Started POST "/users" for ::1 at 2022-12-06 16:02:32 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 12ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 12166)
+
+
+Started POST "/users" for ::1 at 2022-12-06 16:03:00 -0700
+Processing by UsersController#create as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 851)
+
+
+Started POST "/users" for ::1 at 2022-12-06 16:03:16 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"33"}}
+[31mUnpermitted parameter: :user[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 422 Unprocessable Entity in 260ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 1227)
+
+
+Started POST "/users" for ::1 at 2022-12-06 16:03:28 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"33"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["username", "33"], ["password_digest", "$2a$12$iCgIpp2oHjtDRkvL3o4gMu3q4bkeGQ8uhD5R6/1eDxqZ.9GduGaBK"], ["created_at", "2022-12-06 23:03:28.543438"], ["updated_at", "2022-12-06 23:03:28.543438"]]
+  ↳ app/controllers/users_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:5:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.16ms)
+Completed 201 Created in 269ms (Views: 5.9ms | ActiveRecord: 1.8ms | Allocations: 4998)
+
+
+Started POST "/login" for ::1 at 2022-12-06 16:03:46 -0700
+  
+ArgumentError (Before process_action callback :authorize has not been defined):
+  
+app/controllers/sessions_controller.rb:2:in `<class:SessionsController>'
+app/controllers/sessions_controller.rb:1:in `<main>'
+Started POST "/login" for ::1 at 2022-12-06 16:04:19 -0700
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "session"=>{"username"=>"33", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 14194ms (ActiveRecord: 0.0ms | Allocations: 48421)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/sessions_controller.rb:4:in `create'
+Started POST "/login" for ::1 at 2022-12-06 16:05:04 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "session"=>{"username"=>"33", "password"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "33"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.17ms)
+Completed 201 Created in 241ms (Views: 1.6ms | ActiveRecord: 0.8ms | Allocations: 7312)
+
+
+Started POST "/me" for ::1 at 2022-12-06 16:05:09 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/me"):
+  
+Started GET "/me" for ::1 at 2022-12-06 16:05:16 -0700
+Processing by UsersController#show as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "user"=>{"username"=>"33"}}
+Completed 500 Internal Server Error in 16922ms (ActiveRecord: 0.0ms | Allocations: 53287)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `show'
+app/controllers/users_controller.rb:20:in `show'
+Started GET "/me" for ::1 at 2022-12-06 16:07:23 -0700
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "user"=>{"username"=>"33"}}
+Completed 500 Internal Server Error in 19121ms (ActiveRecord: 0.4ms | Allocations: 47948)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `show'
+app/controllers/users_controller.rb:19:in `show'
+Started POST "/login" for ::1 at 2022-12-06 16:08:33 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "session"=>{"username"=>"33", "password"=>"[FILTERED]"}}
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "33"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.46ms)
+Completed 401 Unauthorized in 336ms (Views: 7.5ms | ActiveRecord: 6.3ms | Allocations: 2524837)
+
+
+Started POST "/login" for ::1 at 2022-12-06 16:08:40 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "session"=>{"username"=>"33", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "33"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.52ms)
+Completed 201 Created in 268ms (Views: 17.8ms | ActiveRecord: 1.0ms | Allocations: 584211)
+
+
