@@ -64,61 +64,56 @@ IncorrectAnswer.create(question_id:qz2_q0.id, a1: "Spice Road", a2: "Clay Road",
 ##--QUIZ 3--###
 qz3 = Quiz.create(title: "Claire's third quiz", description: "A tricky film quiz!", image_url: "", author_id:1)
 
-qz3_q1 = Question.create(quiz_id: qz2.id, 
-  category: "Entertainment: Film",
-  format: "multiple",
-  difficulty: "medium",
-  question: "In the 2010 Nightmare on Elm Street reboot, who played Freddy Kruger?",
-  correct_answer: "Jackie Earle Haley")
-qz3_qq2 = Question.create(quiz_id: qz2.id,  
+qz3_q1 = Question.create(quiz_id: qz3.id, category: "Entertainment: Film", format: "multiple", difficulty: "medium", question: "In the 2010 Nightmare on Elm Street reboot, who played Freddy Kruger?", correct_answer: "Jackie Earle Haley")
+qz3_q2 = Question.create(quiz_id: qz3.id,  
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "Which one of these action movies are shot entirely in one take?",
   correct_answer: "Victoria")
-qz3_q3 = Question.create(quiz_id: qz2.id, 
+qz3_q3 = Question.create(quiz_id: qz3.id, 
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "Who played Sgt. Gordon Elias in &#039;Platoon&#039; (1986)?",
   correct_answer: "Willem Dafoe")
-qz3_q4 = Question.create(quiz_id: qz2.id,
+qz3_q4 = Question.create(quiz_id: qz3.id,
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "Darth Vader&#039;s famous reveal to Luke is iconic. But which of these is the right one?",
   correct_answer: "&quot;No. I am your father.&quot;")
-qz3_q5 = Question.create(quiz_id: qz2.id, 
+qz3_q5 = Question.create(quiz_id: qz3.id, 
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "Which animated film did Steven Lisberger direct in 1980 before going on to direct Tron?",
   correct_answer: "Animalympics")
-qz3_q6 = Question.create(quiz_id: qz2.id, 
+qz3_q6 = Question.create(quiz_id: qz3.id, 
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "What was the name of the protagonist in the movie Commando (1985)?",
   correct_answer: "John Matrix")
-qz3_q7 = Question.create(quiz_id: qz2.id, 
+qz3_q7 = Question.create(quiz_id: qz3.id, 
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "What is the correct spelling of the protagonist of the book in The NeverEnding Story (1984)?",
   correct_answer: "Atreyu")
-qz3_q8 = Question.create(quiz_id: qz2.id, 
+qz3_q8 = Question.create(quiz_id: qz3.id, 
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "Which stand-up comedian voiced the talking parrot &quot;Iago&quot; in Disney&#039;s 1992 adaptation of Aladdin?",
   correct_answer: "Gilbert Gottfried")
-qz3_q9 = Question.create(quiz_id: qz2.id, 
+qz3_q9 = Question.create(quiz_id: qz3.id, 
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
   question: "In the 2014 film &quot;Birdman&quot;, what is the primary instrument in the score?",
   correct_answer: "Drums")
-qz3_q0 = Question.create(quiz_id: qz2.id, 
+qz3_q0 = Question.create(quiz_id: qz3.id, 
   category: "Entertainment: Film",
   format: "multiple",
   difficulty: "medium",
@@ -126,70 +121,242 @@ qz3_q0 = Question.create(quiz_id: qz2.id,
   correct_answer: "1.2 billion USD") 
 
 
-IncorrectAnswer.create(question_id:qz3_qu1.id,   
-    a1 = "Tyler Mane",
-    a2 = "Derek Mears",
-    a3 = "Gunnar Hansen")
+IncorrectAnswer.create(question_id:qz3_q1.id,   
+    a1: "Tyler Mane",
+    a2: "Derek Mears",
+    a3: "Gunnar Hansen")
 IncorrectAnswer.create(question_id:qz3_q2.id, 
-    a1 = "Ip Man 2",
-    a2 = "The Bourne Legacy",
-    a3 = "L&eacute;on: The Professional")
+    a1: "Ip Man 2",
+    a2: "The Bourne Legacy",
+    a3: "L&eacute;on: The Professional")
 IncorrectAnswer.create(question_id:qz3_q3.id, 
-    a1 = "Charlie Sheen",
-    a2 = "Matt Damon",
-    a3 = "Johnny Depp")
+    a1: "Charlie Sheen",
+    a2: "Matt Damon",
+    a3: "Johnny Depp")
 IncorrectAnswer.create(question_id:qz3_q4.id, 
-    a1 = "&quot;Luke, I am your father.&quot;",
-    a2 = "&quot;You&#039;re wrong. I am your father.&quot;",
-    a3 = "&quot;The truth is that I am your father.&quot;")
+    a1: "&quot;Luke, I am your father.&quot;",
+    a2: "&quot;You&#039;re wrong. I am your father.&quot;",
+    a3: "&quot;The truth is that I am your father.&quot;")
 IncorrectAnswer.create(question_id:qz3_q5.id, 
-    a1 = "The Fox and the Hound",
-    a2 = "The Black Cauldron",
-    a3 = "The Great Mouse Detecive")
+    a1: "The Fox and the Hound",
+    a2: "The Black Cauldron",
+    a3: "The Great Mouse Detecive")
 IncorrectAnswer.create(question_id:qz3_q6.id, 
-    a1 = "Ben Richards",
-    a2 = "Douglas Quaid",
-    a3 = "Harry Tasker")
+    a1: "Ben Richards",
+    a2: "Douglas Quaid",
+    a3: "Harry Tasker")
 IncorrectAnswer.create(question_id:qz3_q7.id, 
-    a1 = "Atrayu",
-    a2 = "Atraiyu",
-    a3 = "Atraeyu")
+    a1: "Atrayu",
+    a2: "Atraiyu",
+    a3: "Atraeyu")
 IncorrectAnswer.create(question_id:qz3_q8.id,
-    a1 = "Robin Williams",
-    a2 = "Pauly Shore",
-    a3 = "Jonathan Freeman")
+    a1:  "Robin Williams",
+    a2:  "Pauly Shore",
+    a3:  "Jonathan Freeman")
 IncorrectAnswer.create(question_id:qz3_q9.id, 
-    a1 = "Saxophone",
-    a2 = "Violin",
-    a3 = "Actual Live Birds Singing")
+    a1:  "Saxophone",
+    a2:  "Violin",
+    a3:  "Actual Live Birds Singing")
 IncorrectAnswer.create(question_id:qz3_q0.id, 
-    a1 = "640 million USD",
-    a2 = "456 million USD",
-    a3 = "392 million USD")
+    a1: "640 million USD",
+    a2: "456 million USD",
+    a3: "392 million USD")
 
 ##--QUIZ 4--###
-qz3 = Quiz.create(title: "Claire's third quiz", description: "A very easy geography quiz!", image_url: "", author_id:1)
+qz4 = Quiz.create(title: "Claire's fourth quiz", description: "A very easy geography quiz!", image_url: "", author_id:1)
 
-qu1 = Question.create(quiz_id: qz2.id, question:
-qu2 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu3 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu4 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu5 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu6 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu7 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu8 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu9 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
-qu0 = Question.create(quiz_id: qz2.id, category: "History", format: "multi", difficulty: "easy" )
+qz4_q1 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "In Portal 2, the iconic character GLaDOS is turned into:",
+  correct_answer: "A potato")
+qz4_q2 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "In the 2002 video game &quot;Kingdom Hearts&quot;, how many playable worlds were there?",
+  correct_answer: "14")
+qz4_q3 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium" ,
+  question: "In Left 4 Dead, what is the name of the virus, as designated by CEDA, that causes most humans to turn into the Infected?",
+  correct_answer: "Green Flu")
+qz4_q4 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "When was Chapter 1 of the Source Engine mod &quot;Underhell&quot; released?",
+  correct_answer: "September 1st, 2013")
+qz4_q5 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "What was the original name of  &quot;Minecraft&quot;?",
+  correct_answer: "Cave Game")
+qz4_q6 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "In the game Pok&eacute;mon Conquest, how many kingdoms make up the region of Ransei?",
+  correct_answer: "17")
+qz4_q7 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "Which of these blocks in &quot;Minecraft&quot; has the lowest blast resistance?",
+  correct_answer: "Sand")
+qz4_q8 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "When was Club Penguin launched?",
+  correct_answer: "October 24, 2005")
+qz4_q9 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "Why were only only 300,000 copies of Uniracers were produced?",
+  correct_answer: "DMA Designs was sued by Pixar, preventing more copies from being produced")
+qz4_q0 = Question.create(quiz_id: qz4.id, category: "Video Games", format: "multi", difficulty: "medium",
+  question: "Which of the following is a character in the video game Destiny?",
+  correct_answer: "Cayde-6")
+
+IncorrectAnswer.create(question_id:qz4_q1.id, 
+  a1: "A tomato",
+  a2: "A lemon",
+  a3: "An apple")
+IncorrectAnswer.create(question_id:qz4_q2.id, 
+  a1: "13",
+  a2: "16",
+  a3: "11")
+IncorrectAnswer.create(question_id:qz4_q3.id, 
+  a1: "Yellow Fever",
+  a2: "T-Virus",
+  a3: "Raspberry Sniffles")
+IncorrectAnswer.create(question_id:qz4_q4.id,  
+  a1: "March 3rd, 2011",
+  a2: "September 12th, 2013",
+  a3: "October 2nd, 2012")
+IncorrectAnswer.create(question_id:qz4_q5.id,
+  a1: "Minecraft: Order of the Stone",
+  a2: "Dig And Build",
+  a3: "Infiniminer")
+IncorrectAnswer.create(question_id:qz4_q6.id, 
+  a1: "18",
+  a2: "15",
+  a3: "16")
+IncorrectAnswer.create(question_id:qz4_q7.id, 
+  a1: "End Stone",
+  a2: "Water",
+  a3: "Wood Planks")
+IncorrectAnswer.create(question_id:qz4_q8.id, 
+  a1: "October 21, 2005",
+  a2: "March 29, 2006",
+  a3: "November 22, 2004")
+IncorrectAnswer.create(question_id:qz4_q9.id,    
+  a1: "There was a disagreement between DMA Designs and Nintendo",
+  a2: "It didn't sell well due to poor review scores",
+  a3: "No public information is available")
+IncorrectAnswer.create(question_id:qz4_q0.id, 
+  a1: "Ostrava of Boletaria",
+  a2: "Mordecai the Hunter",
+  a3: "Leon S. Kennedy")
 
 
-IncorrectAnswer.create(question_id:qu1.id, )
-IncorrectAnswer.create(question_id:qu2.id, )
-IncorrectAnswer.create(question_id:qu3.id, )
-IncorrectAnswer.create(question_id:qu4.id, )
-IncorrectAnswer.create(question_id:qu5.id, )
-IncorrectAnswer.create(question_id:qu6.id, )
-IncorrectAnswer.create(question_id:qu7.id, )
-IncorrectAnswer.create(question_id:qu8.id, )
-IncorrectAnswer.create(question_id:qu9.id, )
-IncorrectAnswer.create(question_id:qu0.id, )
+## Quiz 5 ##
 
+qz5 = Quiz.create(title: "Oren's first quiz", description: "A simple quiz about computers", image_url: "", author_id:1)
+
+qz5_q1 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "In any programming language, what is the most common way to iterate through an array?" ,correct_answer: "For loops")
+qz5_q2 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "What does CPU stand for?", correct_answer: "Central Processing Unit")
+qz5_q3 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "The programming language Swift was created to replace what other programming language?", correct_answer: "Objective-C")
+qz5_q4 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "What amount of bits commonly equals one byte?", correct_answer: "8")
+qz5_q5 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "The series of the Intel HD graphics generation succeeding that of the 5000 and 6000 series (Broadwell) is called:",correct_answer: "HD Graphics 500")
+qz5_q6 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "How many kilobytes in one gigabyte?" ,correct_answer: "1000000")
+qz5_q7 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "The numbering system with a radix of 16 is more commonly referred to as:" ,correct_answer: "Hexidecimal")
+qz5_q8 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "The C programming language was created by this American computer scientist", correct_answer: "Dennis Ritchie")
+qz5_q9 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "In computing, what does MIDI stand for?", correct_answer: "Musical Instrument Digital Interface")
+qz5_q10 = Question.create(quiz_id: qz5.id, category: "comp", format: "multi", difficulty: "easy", question: "What language does Node.js use?", correct_answer: "JavaScript")
+
+
+IncorrectAnswer.create(question_id:qz5_q1.id, a1: "If statements", a2:  "Do while loops",  a3: "While loops")
+IncorrectAnswer.create(question_id:qz5_q2.id, a1: "Central Process Unit", a2: "Computer Personal Unit", a3: "Central Processor Unit")
+IncorrectAnswer.create(question_id:qz5_q3.id, a1: "C#", a2: "Ruby", a3: "C++")
+IncorrectAnswer.create(question_id:qz5_q4.id, a1: "1", a2: "2", a3: "64")
+IncorrectAnswer.create(question_id:qz5_q5.id, a1: "HD Graphics 700", a2: "HD Graphics 600", a3: "HD Graphics 7000")
+IncorrectAnswer.create(question_id:qz5_q6.id, a1: "1024", a2: "1000", a3: "1048567")
+IncorrectAnswer.create(question_id:qz5_q7.id, a1: "Binary", a2: "Duodecimal", a3: "Octal")
+IncorrectAnswer.create(question_id:qz5_q8.id, a1: "Tim Berners Lee", a2: "al-Khwārizmi", a3: "Willis Ware")
+IncorrectAnswer.create(question_id:qz5_q9.id, a1: "Musical Interface of Digital Instruments", a2: "Modular Interface of Digital Instruments", a3: "Musical Instrument Data Interface")
+IncorrectAnswer.create(question_id:qz5_q10.id, a1: "Java", a2: "Java Source", a3: "Joomla Source Code")
+
+qz6 = Quiz.create(title: "Science and Nature", description: "Science and Nature Questions", image_url: "", author_id:1)
+
+qz6_q1 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "Which of the following bones is not in the leg?" , correct_answer: "Radius")
+qz6_q2 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "Which of these bones is hardest to break?", correct_answer: "Femur")
+qz6_q3 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "Rhinoplasty is a surgical procedure on what part of the human body?", correct_answer: "Nose")
+qz6_q4 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "This element, when overcome with extreme heat and pressure, creates diamonds.", correct_answer: "Carbon")
+qz6_q5 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "What is the first element on the periodic table?",correct_answer: "Hydrogen")
+qz6_q6 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "Human cells typically have how many copies of each gene?" ,correct_answer: "2")
+qz6_q7 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "The biggest distinction between a eukaryotic cell and a prokaryotic cell is:" ,correct_answer: "The presence or absence of a nucleus")
+qz6_q8 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "What is the standard atomic weight of a Plutonium nucleus?", correct_answer: "244")
+qz6_q9 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "Dry ice is the solid form of what substance?", correct_answer: "Carbon dioxide")
+qz6_q10 = Question.create(quiz_id: qz6.id, category: "sci", format: "multi", difficulty: "easy", question: "Who discovered the law of Gravity?", correct_answer: "Isaac Newton")
+
+IncorrectAnswer.create(question_id:qz6_q1.id, a1: "Patella", a2: "Tibia",  a3: "Fibula")
+IncorrectAnswer.create(question_id:qz6_q2.id, a1: "Cranium", a2: "Humerus", a3: "Tibia")
+IncorrectAnswer.create(question_id:qz6_q3.id, a1: "Ears", a2: "Chin", a3: "Neck")
+IncorrectAnswer.create(question_id:qz6_q4.id, a1: "Nitrogen", a2: "Oxygen", a3: "Hydrogen")
+IncorrectAnswer.create(question_id:qz6_q5.id, a1: "Helium", a2: "Oxygen", a3: "Lithium")
+IncorrectAnswer.create(question_id:qz6_q6.id, a1: "1", a2: "4", a3: "3")
+IncorrectAnswer.create(question_id:qz6_q7.id, a1: "The overall size", a2: "The presence or absence of certain organelles", a3: "The mode of reproduction")
+IncorrectAnswer.create(question_id:qz6_q8.id, a1: "94", a2: "481", a3: "128")
+IncorrectAnswer.create(question_id:qz6_q9.id, a1: "Nitrogen", a2: "Ammonia", a3: "Oxygen")
+IncorrectAnswer.create(question_id:qz6_q10.id, a1: "Galileo Galilei", a2: "Charles Darwin", a3: "Albert Einstein")
+
+qz7 = Quiz.create(title: "Sports", description: "A simple quiz about sports", image_url: "", author_id:1)
+
+q1 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "Who won the 2015 Formula 1 World Championship?" ,correct_answer: "Lewis Hamilton")
+q2 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "Which driver has been the Formula 1 world champion for a record 7 times?", correct_answer: "Michael Schumacher")
+q3 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "In Baseball, how many times does the ball have to be pitched outside of the strike zone before the batter is walked?", correct_answer: "4")
+q4 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "What team won the 2016 MLS Cup?", correct_answer: "Seattle Sounders")
+q5 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "Which team has won the most Stanley Cups in the NHL?",correct_answer: "Montreal Canadians")
+q6 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "When was the first official international game played?" ,correct_answer: "1872")
+q7 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "Which player holds the NHL record of 2,857 points?" ,correct_answer: "Wayne Gretzky")
+q8 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "Which two teams played in Super Bowl XLII?", correct_answer: "The New York Giants and the New England Patriots")
+q9 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "Which of the following Grand Slam tennis tournaments occurs LAST?", correct_answer: "US Open")
+q10 = Question.create(quiz_id: qz7.id, category: "sport", format: "multi", difficulty: "easy", question: "Which team was the 2014-2015 NBA Champions?", correct_answer: "Golden State Warriors")
+
+IncorrectAnswer.create(question_id:q1.id, a1: "Nico Rosberg", a2:  "Sebastian Vettel",  a3: "Jenson Button")
+IncorrectAnswer.create(question_id:q2.id, a1: "Ayrton Senna", a2: "Fernando Alonso", a3: "Jim Clark")
+IncorrectAnswer.create(question_id:q3.id, a1: "1", a2: "2", a3: "3")
+IncorrectAnswer.create(question_id:q4.id, a1: "Colorado Rapids", a2: "Toronto FC", a3: "Montreal Impact")
+IncorrectAnswer.create(question_id:q5.id, a1: "Chicago Blackhawks", a2: "Toronto Maple Leafs", a3: "Detroit Red Wings")
+IncorrectAnswer.create(question_id:q6.id, a1: "1880", a2: "1863", a3: "1865")
+IncorrectAnswer.create(question_id:q7.id, a1: "Mario Lemieux", a2: "Sidney Crosby", a3: "Gordie Howe")
+IncorrectAnswer.create(question_id:q8.id, a1: "The Green Bay Packers and the Pittsburgh Steelers", a2: "The Philadelphia Eagles and the New England Patriots", a3: "The Seattle Seahawks and the Denver Broncos")
+IncorrectAnswer.create(question_id:q9.id, a1: "French Open", a2: "Wimbledon", a3: "Austrailian Open")
+IncorrectAnswer.create(question_id:q10.id, a1: "Cleveland Cavaliers", a2: "Houston Rockets", a3: "Atlanta Hawks")
+
+qz8 = Quiz.create(title: "Oren's first quiz", description: "A simple quiz about music", image_url: "", author_id:1)
+
+q1 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "Who wrote the Sinead O'Connor hit, Nothing Compares 2 U?" ,correct_answer: "Prince")
+q2 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "Who had a 1969 top 5 hit with the song, A Boy Named Sue?", correct_answer: "Johnny Cash")
+q3 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "Where does the Mac part of the name Fleetwood Mac come from?", correct_answer: "John McVie")
+q4 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "What was the name of singer Frank Ocean's second studio album?", correct_answer: "Blonde")
+q5 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "Kanye West's song Gold Digger featured which Oscar-winning actor?",correct_answer: "Jamie Foxx")
+q6 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "Who performed, I Took a Pill in Ibiza?" ,correct_answer: "Mike Posner")
+q7 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "Gene Autry is credited with the first recording for all but which classic Christmas jingle?" ,correct_answer: "White Christmas")
+q8 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: " The British Invasion was a cultural phenomenon in music where British boy bands became popular in the USA in what decade?", correct_answer: "1960s")
+q9 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "The song YYZ by Rush, derives its name from the IATA aiport identification code for which city? ", correct_answer: "Toronto")
+q10 = Question.create(quiz_id: qz8.id, category: "mus", format: "multi", difficulty: "easy", question: "Which of these are NOT a Men at Work song?", correct_answer: "Basket Case")
+
+IncorrectAnswer.create(question_id:q1.id, a1: "Michael Jackson", a2:  "Cameo",  a3: "Rick James")
+IncorrectAnswer.create(question_id:q2.id, a1: "Bob Dylan", a2: "Willie Nelson", a3: "Kris Kristofferson")
+IncorrectAnswer.create(question_id:q3.id, a1: "Christine McVie", a2: "Mac McAnally", a3: "David Tennant")
+IncorrectAnswer.create(question_id:q4.id, a1: "Brunette", a2: "Black", a3: "Burgundy")
+IncorrectAnswer.create(question_id:q5.id, a1: "Alec Baldwin", a2: "Dwayne Johnson", a3: "Bruce Willis")
+IncorrectAnswer.create(question_id:q6.id, a1: "Avicii", a2: "Robbie Williams", a3: "Harry Styles")
+IncorrectAnswer.create(question_id:q7.id, a1: "Frosty the Snowman", a2: "Rudolph the Red-Nosed Reindeer", a3: "Here comes Santa Claus")
+IncorrectAnswer.create(question_id:q8.id, a1: "50s", a2: "40s", a3: "30s")
+IncorrectAnswer.create(question_id:q9.id, a1: "Vancouver", a2: "Ottawa", a3: "Calgary")
+IncorrectAnswer.create(question_id:q10.id, a1: "Dr. Heckyll and Mr. Jive", a2: "Who Can It Be Now", a3: "Be Good Johnny")
+
+qz9 = Quiz.create(title: "Oren's first quiz", description: "A simple quiz about vehicles", image_url: "", author_id:1)
+
+q1 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "Where are the cars of the brand Ferrari manufactured?" ,correct_answer: "Italy")
+q2 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "Which Italian city is home of the car manufacturer Fiat?", correct_answer: "Turin")
+q3 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "Jaguar Cars was previously owned by which car manfacturer?", correct_answer: "Ford")
+q4 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "What UK Train does NOT go over 125MPH?", correct_answer: "Sprinter")
+q5 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "Which of these companies does NOT manufacture motorcycles?",correct_answer: "Toyota")
+q6 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "Which car tire manufacturer is famous for its, P Zero line?" ,correct_answer: "Pirelli")
+q7 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "The LS2 engine is how many cubic inches?" ,correct_answer: "364")
+q8 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "What is the name of the most popular electric car from Nissan?", correct_answer: "Leaf")
+q9 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "What is the fastest road legal car in the world?", correct_answer: "Koenigsegg Agera RS")
+q10 = Question.create(quiz_id: qz9.id, category: "car", format: "multi", difficulty: "easy", question: "What brand of car is associated with James Bond?", correct_answer: "Aston Martin")
+
+IncorrectAnswer.create(question_id:q1.id, a1: "Romania", a2:  "Germany",  a3: "Russia")
+IncorrectAnswer.create(question_id:q2.id, a1: "Maranello", a2: "Modena", a3: "Rome")
+IncorrectAnswer.create(question_id:q3.id, a1: "Chrysler", a2: "General Motors", a3: "Fiat")
+IncorrectAnswer.create(question_id:q4.id, a1: "Class 43", a2: "Javelin", a3: "Pendolino")
+IncorrectAnswer.create(question_id:q5.id, a1: "Honda", a2: "Kawasaki", a3: "Yamaha")
+IncorrectAnswer.create(question_id:q6.id, a1: "Goodyear", a2: "Bridgestone", a3: "Michelin")
+IncorrectAnswer.create(question_id:q7.id, a1: "346", a2: "376", a3: "402")
+IncorrectAnswer.create(question_id:q8.id, a1: "Tree", a2: "Deer", a3: "Roots")
+IncorrectAnswer.create(question_id:q9.id, a1: "Hennessy Venom GT", a2: "Bugatti Veyron Super Sport", a3: "Pagani Huayra BC")
+IncorrectAnswer.create(question_id:q10.id, a1: "Jaguar", a2: "Mercedes-Benz", a3: "BMW")

@@ -5,10 +5,12 @@ import QuizPage from './components/QuizPage';
 import User from './components/User';
 import Signup from './components/Signup';
 import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div>
+        <Navbar/>
         <Routes>
           <Route path='home' element= {<Home/>}/>
           <Route exact path='/login' element= {<NewUserForm/>}/>
