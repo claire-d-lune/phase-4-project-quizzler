@@ -2023,3 +2023,1111 @@ Processing by SessionsController#create as */*
 Completed 201 Created in 268ms (Views: 17.8ms | ActiveRecord: 1.0ms | Allocations: 584211)
 
 
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "quiz_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_0238c45a86"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_questions_on_quiz_id" ON "questions" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateIncorrectAnswers (20221206204525)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "incorrect_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "a1" varchar, "a2" varchar, "a3" varchar, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e4a82d82e0"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_incorrect_answers_on_question_id" ON "incorrect_answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221206204525"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-07 03:35:03.519292"], ["updated_at", "2022-12-07 03:35:03.519292"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.3ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's first quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:35:30.489775"], ["updated_at", "2022-12-07 03:35:30.489775"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of Indonesia?"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.501487"], ["updated_at", "2022-12-07 03:35:30.501487"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which Russian oblast forms a border with Poland?"], ["difficulty", "easy"], ["correct_answer", "Kaliningrad"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.504485"], ["updated_at", "2022-12-07 03:35:30.504485"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which US state has the highest population?"], ["difficulty", "easy"], ["correct_answer", "California"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.507177"], ["updated_at", "2022-12-07 03:35:30.507177"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which of these African countries list Spanish as an official language?"], ["difficulty", "easy"], ["correct_answer", "Equatorial Guinea"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.509912"], ["updated_at", "2022-12-07 03:35:30.509912"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is Canada's smallest province?"], ["difficulty", "easy"], ["correct_answer", "Prince Edward Island"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.512805"], ["updated_at", "2022-12-07 03:35:30.512805"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many countries does Mexico border?"], ["difficulty", "easy"], ["correct_answer", "3"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.515653"], ["updated_at", "2022-12-07 03:35:30.515653"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of India?"], ["difficulty", "easy"], ["correct_answer", "New Delhi"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.518248"], ["updated_at", "2022-12-07 03:35:30.518248"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many federal states does Germany have?"], ["difficulty", "easy"], ["correct_answer", "16"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.520940"], ["updated_at", "2022-12-07 03:35:30.520940"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the only state in the United States that does not have a flag in a shape with 4 edges?"], ["difficulty", "easy"], ["correct_answer", "Ohio"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.523699"], ["updated_at", "2022-12-07 03:35:30.523699"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the 15th letter of the Greek alphabet?"], ["difficulty", "easy"], ["correct_answer", "Omicron (&Omicron;)"], ["quiz_id", 1], ["created_at", "2022-12-07 03:35:30.526299"], ["updated_at", "2022-12-07 03:35:30.526299"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 1], ["created_at", "2022-12-07 03:35:30.533135"], ["updated_at", "2022-12-07 03:35:30.533135"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Samara"], ["a2", "Nizhny Novgorod"], ["a3", "Omsk"], ["question_id", 2], ["created_at", "2022-12-07 03:35:30.535915"], ["updated_at", "2022-12-07 03:35:30.535915"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New York"], ["a2", "Texas"], ["a3", "Florida"], ["question_id", 3], ["created_at", "2022-12-07 03:35:30.538644"], ["updated_at", "2022-12-07 03:35:30.538644"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Guinea"], ["a2", "Cameroon"], ["a3", "Angola"], ["question_id", 4], ["created_at", "2022-12-07 03:35:30.541304"], ["updated_at", "2022-12-07 03:35:30.541304"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New Brunswick"], ["a2", "Nova Scotia"], ["a3", "Yukon"], ["question_id", 5], ["created_at", "2022-12-07 03:35:30.543988"], ["updated_at", "2022-12-07 03:35:30.543988"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "2"], ["a2", "4"], ["a3", "1"], ["question_id", 6], ["created_at", "2022-12-07 03:35:30.546543"], ["updated_at", "2022-12-07 03:35:30.546543"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Bejing"], ["a2", "Montreal"], ["a3", "Tithi"], ["question_id", 7], ["created_at", "2022-12-07 03:35:30.551365"], ["updated_at", "2022-12-07 03:35:30.551365"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "13"], ["a2", "32"], ["a3", "25"], ["question_id", 8], ["created_at", "2022-12-07 03:35:30.554126"], ["updated_at", "2022-12-07 03:35:30.554126"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Florida"], ["a2", "Idaho"], ["a3", "New Mexico"], ["question_id", 9], ["created_at", "2022-12-07 03:35:30.557022"], ["updated_at", "2022-12-07 03:35:30.557022"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Sigma (&Sigma;)"], ["a2", "Pi (&Pi;)"], ["a3", "Nu (&Nu;)"], ["question_id", 10], ["created_at", "2022-12-07 03:35:30.565343"], ["updated_at", "2022-12-07 03:35:30.565343"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's second quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:35:30.566895"], ["updated_at", "2022-12-07 03:35:30.566895"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these was not a beach landing site in the Invasion of Normandy?"], ["difficulty", "easy"], ["correct_answer", "Silver"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.570114"], ["updated_at", "2022-12-07 03:35:30.570114"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was William Frederick Cody better known as?"], ["difficulty", "easy"], ["correct_answer", "Buffalo Bill"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.572810"], ["updated_at", "2022-12-07 03:35:30.572810"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these tanks was designed and operated by the United Kingdom?"], ["difficulty", "easy"], ["correct_answer", "Tog II"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.575476"], ["updated_at", "2022-12-07 03:35:30.575476"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "The original Roman alphabet lacked the following letters EXCEPT:"], ["difficulty", "easy"], ["correct_answer", "X"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.578201"], ["updated_at", "2022-12-07 03:35:30.578201"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was Manfred von Richthofen&#039;s nickname?"], ["difficulty", "easy"], ["correct_answer", "The Red Baron"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.580899"], ["updated_at", "2022-12-07 03:35:30.580899"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Who was the first prime minister of Canada?"], ["difficulty", "easy"], ["correct_answer", "John Macdonald"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.583555"], ["updated_at", "2022-12-07 03:35:30.583555"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "How long did World War II last?"], ["difficulty", "easy"], ["correct_answer", "6 years"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.586193"], ["updated_at", "2022-12-07 03:35:30.586193"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "In 1939, Britain and France declared war on Germany after it invaded which country?"], ["difficulty", "easy"], ["correct_answer", "Poland"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.588797"], ["updated_at", "2022-12-07 03:35:30.588797"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which modern country is known as &quot;The Graveyard of Empires&quot;?"], ["difficulty", "easy"], ["correct_answer", "Afghanistan"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.591580"], ["updated_at", "2022-12-07 03:35:30.591580"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was the name commonly given to the ancient trade routes that connected the East and West of Eurasia?"], ["difficulty", "easy"], ["correct_answer", "Silk Road"], ["quiz_id", 2], ["created_at", "2022-12-07 03:35:30.594280"], ["updated_at", "2022-12-07 03:35:30.594280"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 20:40:15 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 5]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 6]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 7]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 8]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 9]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 10]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 11]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 12]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 13]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 14]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 15]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 16]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 17]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 18]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 19]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mCACHE Quiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 20]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (51.9ms)
+Completed 200 OK in 66ms (Views: 60.0ms | ActiveRecord: 3.2ms | Allocations: 61247)
+
+
+Started GET "/questions" for ::1 at 2022-12-06 20:40:52 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 5]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 6]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 7]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 8]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 9]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 10]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 11]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 12]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 13]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 14]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 15]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 16]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 17]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 18]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 19]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 20]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (25.92ms)
+Completed 200 OK in 41ms (Views: 37.0ms | ActiveRecord: 1.8ms | Allocations: 37030)
+
+
+Started GET "/questions" for ::1 at 2022-12-06 20:41:18 -0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 5]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 6]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 7]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.5ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 8]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.3ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 9]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 10]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 11]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 12]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 13]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 14]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 15]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 16]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 17]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 18]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 19]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 20]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (34.88ms)
+Completed 200 OK in 49ms (Views: 44.6ms | ActiveRecord: 2.6ms | Allocations: 37146)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTruncate Tables (3.0ms)[0m  [1m[31mDELETE FROM "users";
+DELETE FROM "quizzes";
+DELETE FROM "attempts";
+DELETE FROM "questions";
+DELETE FROM "incorrect_answers"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's first quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:42:28.019813"], ["updated_at", "2022-12-07 03:42:28.019813"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of Indonesia?"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.030709"], ["updated_at", "2022-12-07 03:42:28.030709"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which Russian oblast forms a border with Poland?"], ["difficulty", "easy"], ["correct_answer", "Kaliningrad"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.033639"], ["updated_at", "2022-12-07 03:42:28.033639"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which US state has the highest population?"], ["difficulty", "easy"], ["correct_answer", "California"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.036332"], ["updated_at", "2022-12-07 03:42:28.036332"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which of these African countries list Spanish as an official language?"], ["difficulty", "easy"], ["correct_answer", "Equatorial Guinea"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.039148"], ["updated_at", "2022-12-07 03:42:28.039148"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is Canada's smallest province?"], ["difficulty", "easy"], ["correct_answer", "Prince Edward Island"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.041858"], ["updated_at", "2022-12-07 03:42:28.041858"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many countries does Mexico border?"], ["difficulty", "easy"], ["correct_answer", "3"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.044691"], ["updated_at", "2022-12-07 03:42:28.044691"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of India?"], ["difficulty", "easy"], ["correct_answer", "New Delhi"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.047369"], ["updated_at", "2022-12-07 03:42:28.047369"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many federal states does Germany have?"], ["difficulty", "easy"], ["correct_answer", "16"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.049992"], ["updated_at", "2022-12-07 03:42:28.049992"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the only state in the United States that does not have a flag in a shape with 4 edges?"], ["difficulty", "easy"], ["correct_answer", "Ohio"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.052709"], ["updated_at", "2022-12-07 03:42:28.052709"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the 15th letter of the Greek alphabet?"], ["difficulty", "easy"], ["correct_answer", "Omicron (&Omicron;)"], ["quiz_id", 3], ["created_at", "2022-12-07 03:42:28.055394"], ["updated_at", "2022-12-07 03:42:28.055394"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 21], ["created_at", "2022-12-07 03:42:28.061781"], ["updated_at", "2022-12-07 03:42:28.061781"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Samara"], ["a2", "Nizhny Novgorod"], ["a3", "Omsk"], ["question_id", 22], ["created_at", "2022-12-07 03:42:28.064499"], ["updated_at", "2022-12-07 03:42:28.064499"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New York"], ["a2", "Texas"], ["a3", "Florida"], ["question_id", 23], ["created_at", "2022-12-07 03:42:28.069129"], ["updated_at", "2022-12-07 03:42:28.069129"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Guinea"], ["a2", "Cameroon"], ["a3", "Angola"], ["question_id", 24], ["created_at", "2022-12-07 03:42:28.071984"], ["updated_at", "2022-12-07 03:42:28.071984"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New Brunswick"], ["a2", "Nova Scotia"], ["a3", "Yukon"], ["question_id", 25], ["created_at", "2022-12-07 03:42:28.075012"], ["updated_at", "2022-12-07 03:42:28.075012"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "2"], ["a2", "4"], ["a3", "1"], ["question_id", 26], ["created_at", "2022-12-07 03:42:28.083063"], ["updated_at", "2022-12-07 03:42:28.083063"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Bejing"], ["a2", "Montreal"], ["a3", "Tithi"], ["question_id", 27], ["created_at", "2022-12-07 03:42:28.085775"], ["updated_at", "2022-12-07 03:42:28.085775"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "13"], ["a2", "32"], ["a3", "25"], ["question_id", 28], ["created_at", "2022-12-07 03:42:28.088464"], ["updated_at", "2022-12-07 03:42:28.088464"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Florida"], ["a2", "Idaho"], ["a3", "New Mexico"], ["question_id", 29], ["created_at", "2022-12-07 03:42:28.091164"], ["updated_at", "2022-12-07 03:42:28.091164"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Sigma (&Sigma;)"], ["a2", "Pi (&Pi;)"], ["a3", "Nu (&Nu;)"], ["question_id", 30], ["created_at", "2022-12-07 03:42:28.093814"], ["updated_at", "2022-12-07 03:42:28.093814"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's second quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:42:28.095311"], ["updated_at", "2022-12-07 03:42:28.095311"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these was not a beach landing site in the Invasion of Normandy?"], ["difficulty", "easy"], ["correct_answer", "Silver"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.098614"], ["updated_at", "2022-12-07 03:42:28.098614"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was William Frederick Cody better known as?"], ["difficulty", "easy"], ["correct_answer", "Buffalo Bill"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.101364"], ["updated_at", "2022-12-07 03:42:28.101364"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these tanks was designed and operated by the United Kingdom?"], ["difficulty", "easy"], ["correct_answer", "Tog II"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.104036"], ["updated_at", "2022-12-07 03:42:28.104036"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "The original Roman alphabet lacked the following letters EXCEPT:"], ["difficulty", "easy"], ["correct_answer", "X"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.106727"], ["updated_at", "2022-12-07 03:42:28.106727"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was Manfred von Richthofen&#039;s nickname?"], ["difficulty", "easy"], ["correct_answer", "The Red Baron"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.109416"], ["updated_at", "2022-12-07 03:42:28.109416"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Who was the first prime minister of Canada?"], ["difficulty", "easy"], ["correct_answer", "John Macdonald"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.112073"], ["updated_at", "2022-12-07 03:42:28.112073"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "How long did World War II last?"], ["difficulty", "easy"], ["correct_answer", "6 years"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.114775"], ["updated_at", "2022-12-07 03:42:28.114775"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "In 1939, Britain and France declared war on Germany after it invaded which country?"], ["difficulty", "easy"], ["correct_answer", "Poland"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.117464"], ["updated_at", "2022-12-07 03:42:28.117464"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which modern country is known as &quot;The Graveyard of Empires&quot;?"], ["difficulty", "easy"], ["correct_answer", "Afghanistan"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.120106"], ["updated_at", "2022-12-07 03:42:28.120106"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was the name commonly given to the ancient trade routes that connected the East and West of Eurasia?"], ["difficulty", "easy"], ["correct_answer", "Silk Road"], ["quiz_id", 4], ["created_at", "2022-12-07 03:42:28.122837"], ["updated_at", "2022-12-07 03:42:28.122837"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 31], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Gold"], ["a2", "Juno"], ["a3", "Sword"], ["question_id", 31], ["created_at", "2022-12-07 03:42:28.125587"], ["updated_at", "2022-12-07 03:42:28.125587"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 32], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Billy the Kid"], ["a2", "Wild Bill Hickok"], ["a3", "Pawnee Bill"], ["question_id", 32], ["created_at", "2022-12-07 03:42:28.128328"], ["updated_at", "2022-12-07 03:42:28.128328"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 33], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "M4 Sherman"], ["a2", "Tiger H1"], ["a3", "T-34"], ["question_id", 33], ["created_at", "2022-12-07 03:42:28.131009"], ["updated_at", "2022-12-07 03:42:28.131009"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 34], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "W"], ["a2", "U"], ["a3", "J"], ["question_id", 34], ["created_at", "2022-12-07 03:42:28.133750"], ["updated_at", "2022-12-07 03:42:28.133750"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "The High Flying Ace"], ["a2", "The Blue Serpent "], ["a3", "The Germany Gunner"], ["question_id", 35], ["created_at", "2022-12-07 03:42:28.136639"], ["updated_at", "2022-12-07 03:42:28.136639"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 36], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "John Abbott"], ["a2", "Alexander Mackenzie"], ["a3", "Robert Borden"], ["question_id", 36], ["created_at", "2022-12-07 03:42:28.139455"], ["updated_at", "2022-12-07 03:42:28.139455"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 37], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "4 years"], ["a2", "5 years"], ["a3", "7 years"], ["question_id", 37], ["created_at", "2022-12-07 03:42:28.142190"], ["updated_at", "2022-12-07 03:42:28.142190"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Czechoslovakia"], ["a2", "Austria"], ["a3", "Hungary"], ["question_id", 38], ["created_at", "2022-12-07 03:42:28.144798"], ["updated_at", "2022-12-07 03:42:28.144798"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "China"], ["a2", "Iraq"], ["a3", "Russia"], ["question_id", 39], ["created_at", "2022-12-07 03:42:28.147530"], ["updated_at", "2022-12-07 03:42:28.147530"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 40], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Spice Road"], ["a2", "Clay Road"], ["a3", "Salt Road"], ["question_id", 40], ["created_at", "2022-12-07 03:42:28.150314"], ["updated_at", "2022-12-07 03:42:28.150314"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 20:42:40 -0700
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 21]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 22]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 23]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.3ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 24]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 25]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.2ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 26]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 27]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 28]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 29]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 30]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 31]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 32]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 33]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 34]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 35]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 36]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 37]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 38]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 39]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 40]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (28.33ms)
+Completed 200 OK in 42ms (Views: 37.1ms | ActiveRecord: 2.5ms | Allocations: 38647)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221205053358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "username" varchar, "password_digest" varchar, "image_url" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053358"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuizzes (20221205053510)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "quizzes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "image_url" varchar, "author_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053510"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAttempts (20221205053616)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "attempts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "quiz_id" integer NOT NULL, "score" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c8dbef4dd5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_0aecdcc4e6"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_user_id" ON "attempts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_attempts_on_quiz_id" ON "attempts" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205053616"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20221205175007)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "format" varchar, "question" varchar, "difficulty" varchar, "correct_answer" varchar, "quiz_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_0238c45a86"
+FOREIGN KEY ("quiz_id")
+  REFERENCES "quizzes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_questions_on_quiz_id" ON "questions" ("quiz_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221205175007"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateIncorrectAnswers (20221206204525)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "incorrect_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "a1" varchar, "a2" varchar, "a3" varchar, "question_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e4a82d82e0"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_incorrect_answers_on_question_id" ON "incorrect_answers" ("question_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221206204525"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-07 03:43:07.869655"], ["updated_at", "2022-12-07 03:43:07.869655"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.3ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's first quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:43:11.431095"], ["updated_at", "2022-12-07 03:43:11.431095"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of Indonesia?"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.441642"], ["updated_at", "2022-12-07 03:43:11.441642"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which Russian oblast forms a border with Poland?"], ["difficulty", "easy"], ["correct_answer", "Kaliningrad"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.444722"], ["updated_at", "2022-12-07 03:43:11.444722"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which US state has the highest population?"], ["difficulty", "easy"], ["correct_answer", "California"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.447791"], ["updated_at", "2022-12-07 03:43:11.447791"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which of these African countries list Spanish as an official language?"], ["difficulty", "easy"], ["correct_answer", "Equatorial Guinea"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.450591"], ["updated_at", "2022-12-07 03:43:11.450591"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is Canada's smallest province?"], ["difficulty", "easy"], ["correct_answer", "Prince Edward Island"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.453303"], ["updated_at", "2022-12-07 03:43:11.453303"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many countries does Mexico border?"], ["difficulty", "easy"], ["correct_answer", "3"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.456114"], ["updated_at", "2022-12-07 03:43:11.456114"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of India?"], ["difficulty", "easy"], ["correct_answer", "New Delhi"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.458723"], ["updated_at", "2022-12-07 03:43:11.458723"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many federal states does Germany have?"], ["difficulty", "easy"], ["correct_answer", "16"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.461334"], ["updated_at", "2022-12-07 03:43:11.461334"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the only state in the United States that does not have a flag in a shape with 4 edges?"], ["difficulty", "easy"], ["correct_answer", "Ohio"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.464056"], ["updated_at", "2022-12-07 03:43:11.464056"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the 15th letter of the Greek alphabet?"], ["difficulty", "easy"], ["correct_answer", "Omicron (&Omicron;)"], ["quiz_id", 1], ["created_at", "2022-12-07 03:43:11.466660"], ["updated_at", "2022-12-07 03:43:11.466660"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 1], ["created_at", "2022-12-07 03:43:11.473172"], ["updated_at", "2022-12-07 03:43:11.473172"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Samara"], ["a2", "Nizhny Novgorod"], ["a3", "Omsk"], ["question_id", 2], ["created_at", "2022-12-07 03:43:11.475923"], ["updated_at", "2022-12-07 03:43:11.475923"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New York"], ["a2", "Texas"], ["a3", "Florida"], ["question_id", 3], ["created_at", "2022-12-07 03:43:11.478801"], ["updated_at", "2022-12-07 03:43:11.478801"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Guinea"], ["a2", "Cameroon"], ["a3", "Angola"], ["question_id", 4], ["created_at", "2022-12-07 03:43:11.481445"], ["updated_at", "2022-12-07 03:43:11.481445"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New Brunswick"], ["a2", "Nova Scotia"], ["a3", "Yukon"], ["question_id", 5], ["created_at", "2022-12-07 03:43:11.484104"], ["updated_at", "2022-12-07 03:43:11.484104"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "2"], ["a2", "4"], ["a3", "1"], ["question_id", 6], ["created_at", "2022-12-07 03:43:11.486630"], ["updated_at", "2022-12-07 03:43:11.486630"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Bejing"], ["a2", "Montreal"], ["a3", "Tithi"], ["question_id", 7], ["created_at", "2022-12-07 03:43:11.489163"], ["updated_at", "2022-12-07 03:43:11.489163"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "13"], ["a2", "32"], ["a3", "25"], ["question_id", 8], ["created_at", "2022-12-07 03:43:11.493435"], ["updated_at", "2022-12-07 03:43:11.493435"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Florida"], ["a2", "Idaho"], ["a3", "New Mexico"], ["question_id", 9], ["created_at", "2022-12-07 03:43:11.496741"], ["updated_at", "2022-12-07 03:43:11.496741"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Sigma (&Sigma;)"], ["a2", "Pi (&Pi;)"], ["a3", "Nu (&Nu;)"], ["question_id", 10], ["created_at", "2022-12-07 03:43:11.505295"], ["updated_at", "2022-12-07 03:43:11.505295"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's second quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:43:11.506834"], ["updated_at", "2022-12-07 03:43:11.506834"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these was not a beach landing site in the Invasion of Normandy?"], ["difficulty", "easy"], ["correct_answer", "Silver"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.510083"], ["updated_at", "2022-12-07 03:43:11.510083"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was William Frederick Cody better known as?"], ["difficulty", "easy"], ["correct_answer", "Buffalo Bill"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.512810"], ["updated_at", "2022-12-07 03:43:11.512810"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these tanks was designed and operated by the United Kingdom?"], ["difficulty", "easy"], ["correct_answer", "Tog II"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.515439"], ["updated_at", "2022-12-07 03:43:11.515439"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "The original Roman alphabet lacked the following letters EXCEPT:"], ["difficulty", "easy"], ["correct_answer", "X"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.518058"], ["updated_at", "2022-12-07 03:43:11.518058"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was Manfred von Richthofen&#039;s nickname?"], ["difficulty", "easy"], ["correct_answer", "The Red Baron"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.520810"], ["updated_at", "2022-12-07 03:43:11.520810"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Who was the first prime minister of Canada?"], ["difficulty", "easy"], ["correct_answer", "John Macdonald"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.523471"], ["updated_at", "2022-12-07 03:43:11.523471"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "How long did World War II last?"], ["difficulty", "easy"], ["correct_answer", "6 years"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.526112"], ["updated_at", "2022-12-07 03:43:11.526112"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "In 1939, Britain and France declared war on Germany after it invaded which country?"], ["difficulty", "easy"], ["correct_answer", "Poland"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.528768"], ["updated_at", "2022-12-07 03:43:11.528768"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which modern country is known as &quot;The Graveyard of Empires&quot;?"], ["difficulty", "easy"], ["correct_answer", "Afghanistan"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.531407"], ["updated_at", "2022-12-07 03:43:11.531407"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was the name commonly given to the ancient trade routes that connected the East and West of Eurasia?"], ["difficulty", "easy"], ["correct_answer", "Silk Road"], ["quiz_id", 2], ["created_at", "2022-12-07 03:43:11.534085"], ["updated_at", "2022-12-07 03:43:11.534085"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Gold"], ["a2", "Juno"], ["a3", "Sword"], ["question_id", 11], ["created_at", "2022-12-07 03:43:11.536694"], ["updated_at", "2022-12-07 03:43:11.536694"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Billy the Kid"], ["a2", "Wild Bill Hickok"], ["a3", "Pawnee Bill"], ["question_id", 12], ["created_at", "2022-12-07 03:43:11.539260"], ["updated_at", "2022-12-07 03:43:11.539260"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "M4 Sherman"], ["a2", "Tiger H1"], ["a3", "T-34"], ["question_id", 13], ["created_at", "2022-12-07 03:43:11.541834"], ["updated_at", "2022-12-07 03:43:11.541834"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "W"], ["a2", "U"], ["a3", "J"], ["question_id", 14], ["created_at", "2022-12-07 03:43:11.544435"], ["updated_at", "2022-12-07 03:43:11.544435"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "The High Flying Ace"], ["a2", "The Blue Serpent "], ["a3", "The Germany Gunner"], ["question_id", 15], ["created_at", "2022-12-07 03:43:11.547022"], ["updated_at", "2022-12-07 03:43:11.547022"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "John Abbott"], ["a2", "Alexander Mackenzie"], ["a3", "Robert Borden"], ["question_id", 16], ["created_at", "2022-12-07 03:43:11.549603"], ["updated_at", "2022-12-07 03:43:11.549603"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "4 years"], ["a2", "5 years"], ["a3", "7 years"], ["question_id", 17], ["created_at", "2022-12-07 03:43:11.552139"], ["updated_at", "2022-12-07 03:43:11.552139"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Czechoslovakia"], ["a2", "Austria"], ["a3", "Hungary"], ["question_id", 18], ["created_at", "2022-12-07 03:43:11.554716"], ["updated_at", "2022-12-07 03:43:11.554716"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "China"], ["a2", "Iraq"], ["a3", "Russia"], ["question_id", 19], ["created_at", "2022-12-07 03:43:11.557374"], ["updated_at", "2022-12-07 03:43:11.557374"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Spice Road"], ["a2", "Clay Road"], ["a3", "Salt Road"], ["question_id", 20], ["created_at", "2022-12-07 03:43:11.560181"], ["updated_at", "2022-12-07 03:43:11.560181"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.3ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's first quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:43:18.070756"], ["updated_at", "2022-12-07 03:43:18.070756"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of Indonesia?"], ["difficulty", "easy"], ["correct_answer", "Jakarta"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.081410"], ["updated_at", "2022-12-07 03:43:18.081410"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which Russian oblast forms a border with Poland?"], ["difficulty", "easy"], ["correct_answer", "Kaliningrad"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.084680"], ["updated_at", "2022-12-07 03:43:18.084680"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which US state has the highest population?"], ["difficulty", "easy"], ["correct_answer", "California"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.087629"], ["updated_at", "2022-12-07 03:43:18.087629"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "Which of these African countries list Spanish as an official language?"], ["difficulty", "easy"], ["correct_answer", "Equatorial Guinea"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.090510"], ["updated_at", "2022-12-07 03:43:18.090510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is Canada's smallest province?"], ["difficulty", "easy"], ["correct_answer", "Prince Edward Island"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.093274"], ["updated_at", "2022-12-07 03:43:18.093274"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many countries does Mexico border?"], ["difficulty", "easy"], ["correct_answer", "3"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.096046"], ["updated_at", "2022-12-07 03:43:18.096046"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the capital of India?"], ["difficulty", "easy"], ["correct_answer", "New Delhi"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.098638"], ["updated_at", "2022-12-07 03:43:18.098638"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "How many federal states does Germany have?"], ["difficulty", "easy"], ["correct_answer", "16"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.101226"], ["updated_at", "2022-12-07 03:43:18.101226"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the only state in the United States that does not have a flag in a shape with 4 edges?"], ["difficulty", "easy"], ["correct_answer", "Ohio"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.103862"], ["updated_at", "2022-12-07 03:43:18.103862"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "Geo"], ["format", "multi"], ["question", "What is the 15th letter of the Greek alphabet?"], ["difficulty", "easy"], ["correct_answer", "Omicron (&Omicron;)"], ["quiz_id", 3], ["created_at", "2022-12-07 03:43:18.106471"], ["updated_at", "2022-12-07 03:43:18.106471"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Poland, Iceland, Italy, Greece, Serbia"], ["a2", "Poland, Iceland, Italy, Greenland, Spain"], ["a3", "Portugal, Iceland, Ireland, Greece, Serbia"], ["question_id", 21], ["created_at", "2022-12-07 03:43:18.112913"], ["updated_at", "2022-12-07 03:43:18.112913"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Samara"], ["a2", "Nizhny Novgorod"], ["a3", "Omsk"], ["question_id", 22], ["created_at", "2022-12-07 03:43:18.115575"], ["updated_at", "2022-12-07 03:43:18.115575"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New York"], ["a2", "Texas"], ["a3", "Florida"], ["question_id", 23], ["created_at", "2022-12-07 03:43:18.118191"], ["updated_at", "2022-12-07 03:43:18.118191"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Guinea"], ["a2", "Cameroon"], ["a3", "Angola"], ["question_id", 24], ["created_at", "2022-12-07 03:43:18.120769"], ["updated_at", "2022-12-07 03:43:18.120769"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "New Brunswick"], ["a2", "Nova Scotia"], ["a3", "Yukon"], ["question_id", 25], ["created_at", "2022-12-07 03:43:18.123355"], ["updated_at", "2022-12-07 03:43:18.123355"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "2"], ["a2", "4"], ["a3", "1"], ["question_id", 26], ["created_at", "2022-12-07 03:43:18.125855"], ["updated_at", "2022-12-07 03:43:18.125855"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Bejing"], ["a2", "Montreal"], ["a3", "Tithi"], ["question_id", 27], ["created_at", "2022-12-07 03:43:18.128323"], ["updated_at", "2022-12-07 03:43:18.128323"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "13"], ["a2", "32"], ["a3", "25"], ["question_id", 28], ["created_at", "2022-12-07 03:43:18.132696"], ["updated_at", "2022-12-07 03:43:18.132696"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Florida"], ["a2", "Idaho"], ["a3", "New Mexico"], ["question_id", 29], ["created_at", "2022-12-07 03:43:18.135694"], ["updated_at", "2022-12-07 03:43:18.135694"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Sigma (&Sigma;)"], ["a2", "Pi (&Pi;)"], ["a3", "Nu (&Nu;)"], ["question_id", 30], ["created_at", "2022-12-07 03:43:18.144188"], ["updated_at", "2022-12-07 03:43:18.144188"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Create (0.2ms)[0m  [1m[32mINSERT INTO "quizzes" ("title", "description", "image_url", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Claire's second quiz"], ["description", "A very easy geography quiz!"], ["image_url", ""], ["author_id", 1], ["created_at", "2022-12-07 03:43:18.145715"], ["updated_at", "2022-12-07 03:43:18.145715"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these was not a beach landing site in the Invasion of Normandy?"], ["difficulty", "easy"], ["correct_answer", "Silver"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.148969"], ["updated_at", "2022-12-07 03:43:18.148969"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was William Frederick Cody better known as?"], ["difficulty", "easy"], ["correct_answer", "Buffalo Bill"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.151635"], ["updated_at", "2022-12-07 03:43:18.151635"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which one of these tanks was designed and operated by the United Kingdom?"], ["difficulty", "easy"], ["correct_answer", "Tog II"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.154248"], ["updated_at", "2022-12-07 03:43:18.154248"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "The original Roman alphabet lacked the following letters EXCEPT:"], ["difficulty", "easy"], ["correct_answer", "X"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.156848"], ["updated_at", "2022-12-07 03:43:18.156848"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was Manfred von Richthofen&#039;s nickname?"], ["difficulty", "easy"], ["correct_answer", "The Red Baron"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.159671"], ["updated_at", "2022-12-07 03:43:18.159671"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.1ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Who was the first prime minister of Canada?"], ["difficulty", "easy"], ["correct_answer", "John Macdonald"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.162420"], ["updated_at", "2022-12-07 03:43:18.162420"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "How long did World War II last?"], ["difficulty", "easy"], ["correct_answer", "6 years"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.164955"], ["updated_at", "2022-12-07 03:43:18.164955"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "In 1939, Britain and France declared war on Germany after it invaded which country?"], ["difficulty", "easy"], ["correct_answer", "Poland"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.167627"], ["updated_at", "2022-12-07 03:43:18.167627"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "Which modern country is known as &quot;The Graveyard of Empires&quot;?"], ["difficulty", "easy"], ["correct_answer", "Afghanistan"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.170345"], ["updated_at", "2022-12-07 03:43:18.170345"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuiz Load (0.0ms)[0m  [1m[34mSELECT "quizzes".* FROM "quizzes" WHERE "quizzes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("category", "format", "question", "difficulty", "correct_answer", "quiz_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category", "History"], ["format", "multi"], ["question", "What was the name commonly given to the ancient trade routes that connected the East and West of Eurasia?"], ["difficulty", "easy"], ["correct_answer", "Silk Road"], ["quiz_id", 4], ["created_at", "2022-12-07 03:43:18.173006"], ["updated_at", "2022-12-07 03:43:18.173006"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 31], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Gold"], ["a2", "Juno"], ["a3", "Sword"], ["question_id", 31], ["created_at", "2022-12-07 03:43:18.175645"], ["updated_at", "2022-12-07 03:43:18.175645"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 32], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Billy the Kid"], ["a2", "Wild Bill Hickok"], ["a3", "Pawnee Bill"], ["question_id", 32], ["created_at", "2022-12-07 03:43:18.178260"], ["updated_at", "2022-12-07 03:43:18.178260"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 33], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "M4 Sherman"], ["a2", "Tiger H1"], ["a3", "T-34"], ["question_id", 33], ["created_at", "2022-12-07 03:43:18.180866"], ["updated_at", "2022-12-07 03:43:18.180866"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 34], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "W"], ["a2", "U"], ["a3", "J"], ["question_id", 34], ["created_at", "2022-12-07 03:43:18.183499"], ["updated_at", "2022-12-07 03:43:18.183499"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "The High Flying Ace"], ["a2", "The Blue Serpent "], ["a3", "The Germany Gunner"], ["question_id", 35], ["created_at", "2022-12-07 03:43:18.186133"], ["updated_at", "2022-12-07 03:43:18.186133"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 36], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "John Abbott"], ["a2", "Alexander Mackenzie"], ["a3", "Robert Borden"], ["question_id", 36], ["created_at", "2022-12-07 03:43:18.188710"], ["updated_at", "2022-12-07 03:43:18.188710"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 37], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "4 years"], ["a2", "5 years"], ["a3", "7 years"], ["question_id", 37], ["created_at", "2022-12-07 03:43:18.191256"], ["updated_at", "2022-12-07 03:43:18.191256"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 38], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Czechoslovakia"], ["a2", "Austria"], ["a3", "Hungary"], ["question_id", 38], ["created_at", "2022-12-07 03:43:18.193914"], ["updated_at", "2022-12-07 03:43:18.193914"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 39], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "China"], ["a2", "Iraq"], ["a3", "Russia"], ["question_id", 39], ["created_at", "2022-12-07 03:43:18.196575"], ["updated_at", "2022-12-07 03:43:18.196575"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 40], ["LIMIT", 1]]
+  [1m[36mIncorrectAnswer Create (0.2ms)[0m  [1m[32mINSERT INTO "incorrect_answers" ("a1", "a2", "a3", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["a1", "Spice Road"], ["a2", "Clay Road"], ["a3", "Salt Road"], ["question_id", 40], ["created_at", "2022-12-07 03:43:18.199188"], ["updated_at", "2022-12-07 03:43:18.199188"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/questions" for ::1 at 2022-12-06 20:43:28 -0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"username"=>"33", "password"=>"[FILTERED]", "question"=>{}}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 5]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 6]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 7]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 8]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 9]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 10]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 11]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 12]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 13]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 14]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 15]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 16]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 17]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 18]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 19]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 20]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 21]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 22]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 23]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 24]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 25]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 26]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 27]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 28]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 29]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 30]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 31]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 32]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 33]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 34]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 35]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 36]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 37]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.1ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 38]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 39]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mIncorrectAnswer Load (0.0ms)[0m  [1m[34mSELECT "incorrect_answers".* FROM "incorrect_answers" WHERE "incorrect_answers"."question_id" = ?[0m  [["question_id", 40]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (44.96ms)
+Completed 200 OK in 56ms (Views: 51.5ms | ActiveRecord: 2.5ms | Allocations: 62578)
+
+
