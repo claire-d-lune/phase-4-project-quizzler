@@ -15,17 +15,14 @@ class UsersController < ApplicationController
     end
 
     def show
-      byebug
       user = User.find(session[:user_id])
       render json: user, status: 200
     end
-
 
     private
 
     def user_params
         params.permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
     end
-
-
+    
 end

@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const QuizCard = ({quiz}) => {
-
 
     return (
         <div class="w-9/10 my-5 lg:flex">
@@ -15,7 +15,9 @@ const QuizCard = ({quiz}) => {
                     </svg>
                     {quiz.questions[0].category}
                 </p>
-                <div class="text-black font-bold text-xl mb-2">{quiz.title}</div>
+                <Link to={`/quizpage/${quiz.id}`}>
+                    <div class="text-black font-bold text-xl mb-2">{quiz.title}</div>
+                </Link>
                 <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
                 </div>
                 <div class="flex items-center">

@@ -7,7 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+user1 = User.create(
+  first_name: "Claire", 
+  last_name: "Steinhoff", 
+  username: "claire-d-lune", 
+  image_url: "https://media-exp1.licdn.com/dms/image/D5603AQF9uigUo2kWQA/profile-displayphoto-shrink_800_800/0/1668648375793?e=1675900800&v=beta&t=p33TY21eEtjriCLxvesaFM36yXEdac7DP7Gn0xVVT00",
+  password_digest:"$2a$12$ajUgvBSjQ3SJ57k3xKC4I.7dJFuHpFC9VEUOyFcQ4wKg8YylslKWu")
+user2 = User.create(
+  first_name: "Oren",
+  last_name: "Noyes",
+  username: "orn",
+  image_url: "https://media-exp1.licdn.com/dms/image/D5635AQFKEIO7J50lKg/profile-framedphoto-shrink_800_800/0/1667947544509?e=1671055200&v=beta&t=OhPkonBcFqqTEBkLVPSq8__SyA-Y-e7BfKtgOnoI-FQ", 
+  password_digest: "$2a$12$ec2FeXOXfkMPtYcBA5Hbt.YBGwsDw0Zl.ff3e7YEvo6J3PX4CEXwC")
 ##--QUIZ 1--###
+
 
 qz1 = Quiz.create(title: "Claire's first quiz", description: "A very easy geography quiz!", image_url: "", author_id:1)
 

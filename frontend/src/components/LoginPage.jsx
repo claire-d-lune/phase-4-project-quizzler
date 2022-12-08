@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState }  from "react";
 import Navbar from "./Navbar"
+import { UserContext } from "../context/context";
+import { redirect } from "react-router-dom";
 
 
-function NewUserForm() {
+function LoginPage() {
 
+    //Controlled form and submission:
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -15,19 +18,20 @@ function NewUserForm() {
         setFormData(newInfo)
     }
 
+    //importing context setter for post log in. 
+    let setUserContext = useContext(UserContext)[1]
 
-    
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        fetch("/api/login", {
-            method: "POST",
+        
+        fetch("/api/login", 
+        {   method: "POST",
             headers:{"Content-Type" : "application/json"},
             body: JSON.stringify(formData)
         })
-
+        .then(res => res.json())
+        .then(data => data.username ? setUserContext(data) : alert("Error!"))
     }
-
-    console.log(formData)
 
     return (
         <>
@@ -56,7 +60,7 @@ function NewUserForm() {
                     </div>
                     </div>
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Login</button>
+                    <button onClick={handleSubmit} class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Login</button>
                 </div>
                 </div>
             </form>
@@ -67,4 +71,4 @@ function NewUserForm() {
     )
 }
 
-export default NewUserForm;
+export default LoginPage;

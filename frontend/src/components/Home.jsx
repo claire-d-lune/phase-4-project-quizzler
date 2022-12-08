@@ -12,8 +12,6 @@ const Home = () => {
         .then(data => setQuizList([...data]))
     }, []);
 
-    console.log(quizList)
-
     const quizStack = quizList.map((quiz) => {
         return <QuizCard key={quiz.id} quiz={quiz}/>
     }) 
