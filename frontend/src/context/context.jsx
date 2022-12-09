@@ -7,7 +7,7 @@ const UserContext = createContext();
 // create a provider component
 function UserProvider({ children }) {
 
-  const [currentUser, setCurrentUser] = useState({userName: "claire-d-lune", image_url: "https://media-exp1.licdn.com/dms/image/D5603AQF9uigUo2kWQA/profile-displayphoto-shrink_800_800/0/1668648375793?e=1675900800&v=beta&t=p33TY21eEtjriCLxvesaFM36yXEdac7DP7Gn0xVVT00"})
+  const [currentUser, setCurrentUser] = useState({id: 1, userName: "claire-d-lune", image_url: 'https://pngimg.com/uploads/github/github_PNG90.png', attempts: []})
 
   return <UserContext.Provider value={[currentUser, setCurrentUser]}>{children}</UserContext.Provider>;
 }

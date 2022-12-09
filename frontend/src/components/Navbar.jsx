@@ -33,17 +33,20 @@ const Navbar = () => {
                     <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <Link to="/home">
-                        <p class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</p>
+                            <p class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</p>
                         </Link>
 
                         <Link to="/leaderboard">
-                        <p class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Leaderboard</p>
+                            <p class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Leaderboard</p>
                         </Link>
                         
                         <Link to="/user">
-                        <p class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profile</p>
+                            <p class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profile</p>
                         </Link>
                         
+                        <Link to="/login">
+                            <p class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login/Change User</p>
+                        </Link>
                     </div>
                     </div>
                 </div>

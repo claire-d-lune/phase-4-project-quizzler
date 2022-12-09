@@ -1,7 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../context/context";
+import AttemptCard from "./AttemptCard";
 
 const User = () => {
+
+    let currentContext = useContext(UserContext)
+    let user = currentContext[0]
+
+
+    console.log(user.attempts)
+
+    let attemptsStack = user.attempts.map((attempt) => {
+            return <AttemptCard key={attempt.id} score={attempt.score} quiz={attempt.quiz_id}/>
+        })
+
     return (
+        <>
         <div class="h-full">
 
             <div class="border-b-2 block md:flex">
@@ -38,8 +52,9 @@ const User = () => {
                 </div>
 
             </div>
-
         </div>
+        {attemptsStack}
+        </>
     )
 }
 

@@ -30,6 +30,6 @@ class AttemptsController < ApplicationController
     end
 
     def attempt_params
-        params.permit(:title, :description)
+        params.permit(:user_id, :quiz_id, :score)
     end
 end

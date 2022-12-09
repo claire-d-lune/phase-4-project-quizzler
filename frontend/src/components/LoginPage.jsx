@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState }  from "react";
 import Navbar from "./Navbar"
 import { UserContext } from "../context/context";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function LoginPage() {
@@ -21,16 +21,21 @@ function LoginPage() {
     //importing context setter for post log in. 
     let setUserContext = useContext(UserContext)[1]
 
+    let navigate = useNavigate()
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        
         fetch("/api/login", 
         {   method: "POST",
             headers:{"Content-Type" : "application/json"},
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then(data => data.username ? setUserContext(data) : alert("Error!"))
+        .then(data => {
+            data.username ? setUserContext(data) : alert("Error!")
+            return data
+        })
+        .then((data) => data.username ? navigate("/home") : nil)
     }
 
     return (
